@@ -15,7 +15,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return Categoria::orderBy('id', 'asc')->get();
+        return Categoria::with(['subcategorias'])->orderBy('id', 'asc')->get();
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class CategoriaController extends Controller
 
     public function show($id)
     {
-        return Categoria::where(['id' => $id])->get();
+        return Categoria::with(['subcategorias'])->find($id);
     }
 
     public function update(Request $request, $id)
