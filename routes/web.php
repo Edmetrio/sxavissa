@@ -10,6 +10,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubcategoriaController;
+use App\Http\Livewire\Categoria;
 use App\Models\Models\Stock;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::resource('home', HomeController::class);
+
+Route::get('lcategoria', Categoria::class);
 
 
 require __DIR__.'/auth.php';
