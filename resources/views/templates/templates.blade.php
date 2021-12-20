@@ -184,7 +184,7 @@
                             <div class="layout-menu-tooltip-text">Artigos</div>
                         </div>
                         <ul role="menu">
-                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ route('artigo.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-external-link"></i><span>Artigo</span></a>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('artigos') }}"><i class="layout-menuitem-icon pi pi-fw pi-external-link"></i><span>Artigo</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Artigo</div>
@@ -206,7 +206,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="menuform:om_buy" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-shopping-cart"></i><span>Venda</span></a>
+                    <li id="menuform:om_buy" role="menuitem"><a href="{{ url('vendas') }}"><i class="layout-menuitem-icon pi pi-fw pi-shopping-cart"></i><span>Venda</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Buy Now</div>
