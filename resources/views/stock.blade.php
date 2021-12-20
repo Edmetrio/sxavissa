@@ -44,7 +44,7 @@
                             <th scope="col">Ícone</th>
                             <th scope="col">Armazém</th>
                             <th scope="col">Qtd. Mínimo</th>
-                            <th scope="col">Utilizador</th>
+                            <!-- <th scope="col">Utilizador</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -57,7 +57,7 @@
                             <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon}}" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->armazens->nome}}</td>
                             <td>{{$c->stockminimo}}</td>
-                            <td>{{$c->users->name}}</td>
+                           
                         </tr>
                         @endforeach
                     </tbody>
