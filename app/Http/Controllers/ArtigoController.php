@@ -26,7 +26,7 @@ class ArtigoController extends Controller
         $subcategoria = Subcategoria::orderBy('id', 'desc')->get();
         $armazem = Armazem::orderBy('id', 'desc')->get();
         $unidade = Unidade::orderBy('id', 'desc')->get();
-        return view('artigo', compact('artigo','categoria','subcategoria','tipo','armazem','unidade')); 
+        return view('artigos', compact('artigo','categoria','subcategoria','tipo','armazem','unidade')); 
     }
 
     /**
@@ -83,10 +83,10 @@ class ArtigoController extends Controller
         if($stock);
             {
                 $request->session()->flash('status', 'Artigo adicionada');
-                return redirect('artigo');
+                return redirect('artigos');
             }
             $request->session()->flash('status', 'Erro ao Adicionar!');
-            return redirect('artigo');
+            return redirect('artigos');
     }
 
     /**
@@ -150,10 +150,10 @@ class ArtigoController extends Controller
         if($stock);
             {
                 $request->session()->flash('status', 'Artigo Alterada');
-                return redirect('artigo');
+                return redirect('artigos');
             }
             $request->session()->flash('status', 'Erro ao Alterar!');
-            return redirect('artigo');
+            return redirect('artigos');
     }
 
     /**
@@ -162,8 +162,17 @@ class ArtigoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        dd($id);
+        
+        /* $stock = Artigo::find($id)->delete();
+        if($stock);
+            {
+                $request->session()->flash('status', 'Artigo Apagado');
+                return redirect('artigos');
+            }
+            $request->session()->flash('status', 'Erro ao Apagar!');
+            return redirect('artigos'); */
     }
 }
