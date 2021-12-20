@@ -32,4 +32,9 @@ class transacao extends Model
     {
         return $this->hasOne(Tipotransacao::class, 'id', 'tipotransacao_id');
     }
+
+    public function itemtransacaos()
+    {
+        return $this->hasMany(Itemtransacao::class, 'transacao_id');
+    }
 }
