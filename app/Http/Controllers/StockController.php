@@ -14,9 +14,10 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stock = Stock::with(['users','artigos','unidades','armazens'])->orderBy('id', 'desc')->cursorPaginate(1);
+        $stock = Stock::with(['users','artigos','unidades','armazens'])->orderBy('id', 'asc')->cursorPaginate(5);
         return view('stock', compact('stock'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
+        dd($stock);
     }
 
     /**
