@@ -16,7 +16,6 @@ use Livewire\Component;
 class Categoria extends Component
 {
 
-    public $message = 'Apenas um test';
 
     public function render()
     {
