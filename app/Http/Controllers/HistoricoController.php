@@ -48,6 +48,7 @@ class HistoricoController extends Controller
         $item = Itemtransacao::where('transacao_id', $request->transacao_id)->get();
         $historico = Historico::create([
             'users_id' => $user,
+            'pagamento_id' => $request->pagamento_id,
             'valortotal' => $request->valortotal
         ]);
         foreach($item as $itens)
@@ -55,7 +56,7 @@ class HistoricoController extends Controller
             Itemhistorico::create([
                 'historico_id' => $historico->id,
                 'artigo_id' => $itens->artigo_id,
-                'quantidade' => $itens->quantidade
+                'quantidade' => $itens->quantidade,
             ]);
         }
         $$transacao = transacao::latest()->where('users_id', $user)->delete();
