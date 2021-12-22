@@ -212,7 +212,7 @@
                             <div class="layout-menu-tooltip-text">Buy Now</div>
                         </div>
                     </li>
-                    <li id="menuform:om_doc" role="menuitem"><a href="{{ route('relatorio.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-info-circle"></i><span>Relatório</span></a>
+                    <li id="menuform:om_doc" role="menuitem"><a href="{{ url('relatorios') }}"><i class="layout-menuitem-icon pi pi-fw pi-info-circle"></i><span>Relatório</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Documentation</div>
