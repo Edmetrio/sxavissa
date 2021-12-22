@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Models\Armazem;
 use App\Models\Models\Endereco;
+use App\Models\Models\Historico;
 use App\Models\Models\Perfil;
 use App\Models\Models\Stock;
 use App\Models\Models\Telefone;
@@ -76,5 +77,10 @@ class User extends Authenticatable
     public function armazems()
     {
         return $this->hasMany(Armazem::class, 'users_id');
+    }
+
+    public function historicos()
+    {
+        return $this->hasMany(Historico::class, 'users_id');
     }
 }
