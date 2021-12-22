@@ -32,4 +32,9 @@ class Historico extends Model
     {
         return $this->hasOne(Tipotransacao::class, 'id', 'tipotransacao_id');
     }
+
+    public function itemhistoricos()
+    {
+        return $this->hasMany(Itemhistorico::class, 'historico_id');
+    }
 }

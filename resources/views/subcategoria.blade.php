@@ -44,6 +44,7 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Nome da Subcategoria</label>
                             <select name="categoria_id" class="form-control">
+                                <option value="">Seleccione a Categoria</option>
                                     @foreach($categoria as $c)
                                     <option value="{{$c->id}}">{{$c->nome}}</option>
                                     @endforeach

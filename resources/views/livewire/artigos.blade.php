@@ -42,7 +42,8 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Nome da Categoria</label>
                             <select name="categoria_id" wire:model="selectedCategoria" class="form-control">
-                                @foreach($categoria as $c)
+                            <option value="">Seleccione a Categoria</option>    
+                            @foreach($categoria as $c)
                                 <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
                             </select>
@@ -126,48 +127,24 @@
                             <input name="garantia" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
                             <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required hidden value="ecea0218-af0a-4457-85a3-226867688b83" />
                         </div>
-
-
-
                     </div>
                     <div class="p-field p-col-12 p-md-1">
                         <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                             <span class="ui-button-text ui-c">Adicionar</span></button>
                     </div>
-
-
                 </form>
 
-                <div class="p-field p-col-12 p-md-6">
-                    <label class="ui-outputlabel ui-widget" for="">Procurar</label>
-                    <input wire:model="search" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="Procurar..." />
-                </div>
-
-                @if(!$artigo->isEmpty())
-                <div class="p-field p-col-12 p-md-6">
-                    <ul>
-                        @foreach($artigo as $c)
-                        <li>{{$c->nome}}
-                            <div class="p-field p-col-12 p-md-1">
-                                <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
-                                    <span class="ui-button-text ui-c">Adicionar</span></button>
-                            </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                @else
-                @endif
-
+                <label class="ui-outputlabel ui-widget" for="">Procurar</label>
+                <input wire:model="search" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="Procurar..." />
                 <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
                     <caption>Lista dos Artigos</caption>
                     <thead>
                         <tr>
                             <th scope="col">Codigo de Barra</th>
+                            <th scope="col">Nome</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">SubCategoria</th>
                             <th scope="col">Tipo</th>
-                            <th scope="col">Nome</th>
                             <th scope="col">Ícone</th>
                             <th scope="col">Preço</th>
                             <th scope="col">Iva</th>
@@ -178,10 +155,10 @@
                         @foreach($artigo as $c)
                         <tr>
                             <td>{{$c->codigobarra}}</td>
+                            <td>{{$c->nome}}</td>
                             <td>{{$c->categorias->nome}}</td>
                             <td>{{$c->subcategorias->nome}}</td>
                             <td>{{$c->tipos->nome}}</td>
-                            <td>{{$c->nome}}</td>
                             <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->preco}}</td>
                             <td>{{$c->iva}}</td>
@@ -198,7 +175,7 @@
                         @endforeach
                     </tbody>
                 </table>
-               {{$artigo->links()}} 
+                {{$artigo->links()}}
             </div>
 
         </div>

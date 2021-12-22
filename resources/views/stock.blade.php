@@ -57,7 +57,7 @@
                             <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon}}" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->armazens->nome}}</td>
                             <td>{{$c->stockminimo}}</td>
-                           
+
                         </tr>
                         @endforeach
                     </tbody>
@@ -66,7 +66,7 @@
                 <style>
                     .w-5 {
                         display: none;
-        margin-left: 20%;
+                        margin-left: 20%;
                     }
                 </style>
             </div>

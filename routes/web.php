@@ -5,14 +5,19 @@ use App\Http\Controllers\ArmazemController;
 use App\Http\Controllers\ArtigoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\InvoideController;
 use App\Http\Controllers\ItemtransacaoController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubcategoriaController;
+use App\Http\Controllers\TransacaoController;
 use App\Http\Livewire\Artigos;
 use App\Http\Livewire\Categoria;
+use App\Http\Livewire\Relatorios;
 use App\Http\Livewire\Vendas;
 use App\Models\Models\Stock;
 use Illuminate\Support\Facades\Route;
@@ -47,9 +52,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('endereco', EnderecoController::class);
     Route::resource('telefone', TelefoneController::class);
     Route::resource('itemtransacao', ItemtransacaoController::class);
+    Route::resource('invoice', InvoideController::class);
+    Route::resource('transacao', TransacaoController::class);
+    Route::resource('historico', HistoricoController::class);
+    Route::resource('relatorio', RelatorioController::class);
 
     Route::get('artigos', Artigos::class);
     Route::get('vendas', Vendas::class);
+    Route::get('relatorios', Relatorios::class);
 });
 
 Route::resource('home', HomeController::class);

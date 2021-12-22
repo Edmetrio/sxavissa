@@ -26,4 +26,5 @@ class Itemhistorico extends Model
     {
         return $this->hasOne(Artigo::class, 'id', 'artigo_id');
     }
+
 }
