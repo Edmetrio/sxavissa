@@ -12,16 +12,16 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class Relatorios extends Component
 {
-    public $categoria;
-    public $subcategoria;
+    public $user;
+    public $relatorios;
 
     public $search = '';
 
-    public $selectedCategoria = NULL;
+    public $selectedUser = NULL;
 
     public function mount()
     {
-        $this->categoria = Categoria::orderBy('id', 'desc')->get();
+        $this->user = User::with(['historicos'])->orderBy('id', 'desc')->get();
     }
 
     public function render()
@@ -37,11 +37,11 @@ class Relatorios extends Component
         return view('livewire.relatorios', compact('relatorio'));
     }
 
-    public function updatedSelectedCategoria($categoria_id)
+    public function updatedSelectedUser($users_id)
     {
-        if (!is_null($categoria_id)){
-            $this->subcategoria = Subcategoria::where('categoria_id', $categoria_id)->get();
-           
+        if (!is_null($users_id)){
+            $this->relatorios = Historico::where('users_id', $users_id)
+                                            ->with(['itemhistoricos','users'])->get();
         }
     }
 }
