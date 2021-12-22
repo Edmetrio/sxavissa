@@ -74,8 +74,8 @@
 
 
                 @if ($message = Session::get('status'))
-                <div class="alert alert-success" class="table p-field p-col-12 p-md-6 table-striped" style="text-align: center;">
-                    <p>{{ $message }}</p>
+                <div>
+                    <p class="alert alert-success" class="table p-field p-col-12 p-md-6 table-striped" style="text-align: center;">{{ $message }}</p>
                 </div>
                 @endif
 
@@ -119,8 +119,8 @@
                     <p>
                         <hr>
                         SubTotal: {{$total}},00MT
-                        <input name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
-                        <input name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                        <input hidden name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                        <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                         <hr>
 
                     </p>
@@ -152,8 +152,17 @@
                 <form action="{{ route('historico.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <input name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
-                    <input name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                    <input hidden name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                    <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                    <div class="p-field p-col-12 p-md-6">
+                            <label class="ui-outputlabel ui-widget" for="">Tipo de Pagamento</label>
+                            <select name="pagamento_id" class="form-control">
+                            <option value="">Seleccione o tipo de Pagamento</option>    
+                            @foreach($pagamento as $c)
+                                <option value="{{$c->id}}">{{$c->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <div class="p-field p-col-12 p-md-4">
                         <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                             <span class="ui-button-text ui-c">Finalizar</span></button>
