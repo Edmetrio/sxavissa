@@ -1,3 +1,4 @@
+<div>
 <div class="route-bar p-col-40 p-md-12 p-lg-12">
     <div class="route-bar-breadcrumb">
         <ul>
@@ -20,26 +21,27 @@
             <h5>Artigos</h5>
 
             <div class="p-field p-col-12 p-md-6">
-                <label class="ui-outputlabel ui-widget" for="">Nome da Categoria</label>
-                <select name="categoria_id" wire:model="selectedCategoria" class="form-control">
-                    <option value="">Seleccione a Categoria</option>
-                    @foreach($categoria as $c)
-                    <option value="{{$c->id}}">{{$c->nome}}</option>
+                <label class="ui-outputlabel ui-widget" for="">Nome do Utilizador</label>
+                <select name="categoria_id" wire:model="selectedUser" class="form-control">
+                    <option value="">Seleccione o Utilizador</option>
+                    @foreach($user as $c)
+                    <option value="{{$c->id}}">{{$c->name}}</option>
                     @endforeach
                 </select>
             </div>
 
-            @if (!is_null($selectedCategoria))
+            <!-- @if (!is_null($selectedUser))
             <div class="p-field p-col-12 p-md-6">
                 <label class="ui-outputlabel ui-widget" for="">Nome da Subcategoria</label>
                 <select name="subcategoria_id" class="form-control">
-                    @foreach($subcategoria as $c)
-                    <option value="{{$c->id}}">{{$c->nome}}</option>
+                    @foreach($relatorios as $c)
+                    <option value="{{$c->id}}">{{$c->valortotal}}</option>
                     @endforeach
                 </select>
             </div>
-            @endif
+            @endif -->
 
+            @if (!is_null($selectedUser))
             <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
                 <caption>Lista dos Artigos</caption>
                 <thead>
@@ -49,9 +51,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($relatorio as $r)
+                    @foreach($relatorios as $r)
                     <tr>
                         <td>{{$r->users->name}}</td>
+                        <td>{{$r->created_at->format('d-m-y')}}</td>
                     </tr>
                     @foreach($r->itemhistoricos as $i)
                     <tr>
@@ -66,8 +69,10 @@
                 <td></td>
                 <td style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">Total: {{$relatorio->valor_total}}.00MT</td>
             </table>
+            @endif
         </div>
 
     </div>
 
+</div>
 </div>
