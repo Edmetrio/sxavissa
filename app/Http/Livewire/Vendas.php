@@ -6,6 +6,7 @@ use App\Models\Models\Subcategoria;
 use App\Models\Models\Artigo;
 use App\Models\Models\Categoria;
 use App\Models\Models\Itemtransacao;
+use App\Models\Models\Pagamento;
 use App\Models\Models\transacao;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -33,6 +34,7 @@ class Vendas extends Component
        
         $user = Auth::user()->id;
         $transacao = transacao::latest()->where('users_id', $user)->first();
+        $pagamento = Pagamento::orderBy('id', 'desc')->get();
 
         if (isset($transacao)) {
             $itens = Itemtransacao::with(['transacaos', 'artigos'])->where('transacao_id', $transacao->id)->get();
@@ -42,7 +44,7 @@ class Vendas extends Component
                 $t += $item->valor_total;
             }
             $total = $t;
-            return view('livewire.vendas', compact('artigo', 'itens', 'total', 'transacao'));
+            return view('livewire.vendas', compact('artigo', 'itens', 'total', 'transacao','pagamento'));
         } else {
             $itens = Itemtransacao::with(['transacaos', 'artigos'])->get();
             return view('livewire.vendas', compact('itens'));
