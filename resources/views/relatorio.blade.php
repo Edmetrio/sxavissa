@@ -43,11 +43,11 @@
                     </tr>
                     @endforeach
                     <td></td>
-                    <td style="text-align: right; font-size: 15px; font-weight: bold; color: cadetblue;">SubTotal: {{$r->valortotal}}MT</td>
+                    <td style="text-align: right; font-size: 15px; font-weight: bold; color: cadetblue;">SubTotal: {{ number_format($r->valortotal, 2, ',','.')}}MT</td>
                     @endforeach
                 </tbody>
                 <td></td>
-                <td style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">Total: {{$relatorio->valor_total}}.00MT</td>
+                <td style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">Total: {{ number_format($relatorio->valor_total, 2, ',','.')}}MT</td>
             </table>
         </div>
 
