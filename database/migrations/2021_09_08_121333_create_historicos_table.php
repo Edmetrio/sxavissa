@@ -15,13 +15,11 @@ class CreateHistoricosTable extends Migration
     {
         Schema::create('historico', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('users_id')->nullable();
+            $table->uuid('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('userscli_id')->nullable();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('pagamento_id')->nullable();
+            $table->uuid('pagamento_id')->nullable();
             $table->foreign('pagamento_id')->references('id')->on('pagamento')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('tipotransacao_id')->nullable();
+            $table->uuid('tipotransacao_id')->nullable();
             $table->foreign('tipotransacao_id')->references('id')->on('tipotransacao')->onDelete('cascade')->onUpdate('cascade');
             $table->string('validade')->nullable();
             $table->string('datapagamento')->nullable();

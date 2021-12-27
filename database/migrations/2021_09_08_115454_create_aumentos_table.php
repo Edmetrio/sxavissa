@@ -15,11 +15,11 @@ class CreateAumentosTable extends Migration
     {
         Schema::create('aumento', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('artigo_id')->nullable();
+            $table->uuid('artigo_id')->nullable();
             $table->foreign('artigo_id')->references('id')->on('artigo')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('unidade_id')->nullable();
+            $table->uuid('unidade_id')->nullable();
             $table->foreign('unidade_id')->references('id')->on('unidade')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('transacao_id')->nullable();
+            $table->uuid('transacao_id')->nullable();
             $table->foreign('transacao_id')->references('id')->on('transacao')->onDelete('cascade')->onUpdate('cascade');
             $table->string('numerolote')->nullable();
             $table->decimal('custo', 20,2)->nullable();

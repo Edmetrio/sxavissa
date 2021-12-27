@@ -15,9 +15,9 @@ class CreateItemtransacaosTable extends Migration
     {
         Schema::create('itemtransacao', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('transacao_id')->nullable();
+            $table->uuid('transacao_id')->nullable();
             $table->foreign('transacao_id')->references('id')->on('transacao')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('artigo_id')->nullable();
+            $table->uuid('artigo_id')->nullable();
             $table->foreign('artigo_id')->references('id')->on('artigo')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('quantidade', 20,2)->nullable();
             $table->decimal('custo', 20,2)->nullable();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemhistoricosTable extends Migration
+class CreateItemhistoricoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,9 @@ class CreateItemhistoricosTable extends Migration
     {
         Schema::create('itemhistorico', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('historico_id')->nullable();
+            $table->uuid('historico_id')->nullable();
             $table->foreign('historico_id')->references('id')->on('historico')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('artigo_id')->nullable();
+            $table->uuid('artigo_id')->nullable();
             $table->foreign('artigo_id')->references('id')->on('artigo')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('quantidade', 20,2)->nullable();
             $table->decimal('custo', 20,2)->nullable();

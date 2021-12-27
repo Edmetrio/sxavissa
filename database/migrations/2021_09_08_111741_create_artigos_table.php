@@ -16,11 +16,11 @@ class CreateArtigosTable extends Migration
         Schema::create('artigo', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('codigobarra');
-            $table->string('categoria_id')->nullable();
+            $table->uuid('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('subcategoria_id')->nullable();
+            $table->uuid('subcategoria_id')->nullable();
             $table->foreign('subcategoria_id')->references('id')->on('subcategoria')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('tipo_id')->nullable();
+            $table->uuid('tipo_id')->nullable();
             $table->foreign('tipo_id')->references('id')->on('tipo')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nome')->unique()->nullable();
             $table->string('icon')->nullable();

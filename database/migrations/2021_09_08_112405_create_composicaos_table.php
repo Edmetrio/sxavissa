@@ -15,9 +15,9 @@ class CreateComposicaosTable extends Migration
     {
         Schema::create('composicao', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('artigo_id')->nullable();
+            $table->uuid('artigo_id')->nullable();
             $table->foreign('artigo_id')->references('id')->on('artigo')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('unidade_id')->nullable();
+            $table->uuid('unidade_id')->nullable();
             $table->foreign('unidade_id')->references('id')->on('unidade')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('quantidade', 20,2)->nullable();
             $table->string('estado')->default('on');
