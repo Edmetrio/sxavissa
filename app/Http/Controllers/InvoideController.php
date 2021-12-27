@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Models\Historico;
+use App\Models\Models\Itemhistorico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InvoideController extends Controller
 {
@@ -13,7 +17,23 @@ class InvoideController extends Controller
      */
     public function index()
     {
-        return view('invoide');
+        $hist = Historico::latest()->with(['users','pagamentos'])
+                            ->where('users_id', Auth::user()->id)->first();
+        $historico = Itemhistorico::orderBy('id', 'desc')
+                                    ->where('historico_id', $hist->id)
+                                    ->with(['historicos','artigos'])
+                                    ->get();
+        /* dd($hist); */
+        $total = 0;
+        foreach ($historico as $h) {
+            $h->subtotal = $h->artigos->preco * $h->quantidade;
+            $total += $h->subtotal;
+        }
+        $historico->total = $total;
+        $iva = $total * 0.17;
+        $historico->tt = $iva + $total;
+
+        return view('invoide', compact('historico', 'hist'));
     }
 
     /**
