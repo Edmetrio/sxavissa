@@ -119,7 +119,7 @@ class ArtigoController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        /* $request->validate([
             'codigobarra' => 'required|numeric',
             'nome' => 'required',
             'categoria_id' => 'required',
@@ -132,7 +132,7 @@ class ArtigoController extends Controller
             'quantidade' => 'required',
             'stockminimo' => 'required',
             'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        ]); */
 
         $input = $request->all();
         $stocki = $request->all();
@@ -144,10 +144,9 @@ class ArtigoController extends Controller
         } else {
             unset($input['icon']);
         }
-
-        $stock = Artigo::find($id)->update($input);
-        /* $stock = Stock::where('artigo_id', $id)->get(); */
-        if($stock);
+        $artigo = Artigo::find($id)->update($input);
+        /* $stock = Stock::where(['artigo_id' => $id])->update($stocki); */
+        if($artigo);
             {
                 $request->session()->flash('status', 'Artigo Alterada');
                 return redirect('artigos');
