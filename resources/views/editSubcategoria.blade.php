@@ -60,6 +60,22 @@
                         <span><img src="{{asset('./assets/images/subcategoria/'.$subcategoria->icon)}}" style="width: 15%;" /></span>
                     </div>
 
+                    <div class="p-field p-col-12 p-md-6">
+                        <label class="ui-outputlabel ui-widget" for="lastname2">Estado</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="estado" id="estado1" value="on" @if($subcategoria->estado === 'on') checked @else  @endif>
+                            <label class="form-check-label" for="estado1">
+                                Ligado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="estado" id="estado2" value="off" @if($subcategoria->estado === 'off') checked @else  @endif>
+                            <label class="form-check-label" for="estado2">
+                                Desligado
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="p-field p-col-12 p-md-1">
