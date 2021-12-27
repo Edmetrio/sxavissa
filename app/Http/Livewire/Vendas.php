@@ -7,7 +7,7 @@ use App\Models\Models\Artigo;
 use App\Models\Models\Categoria;
 use App\Models\Models\Itemtransacao;
 use App\Models\Models\Pagamento;
-use App\Models\Models\transacao;
+use App\Models\Models\Transacao;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use phpDocumentor\Reflection\Types\Null_;
@@ -38,7 +38,7 @@ class Vendas extends Component
                        /*  dd($artigo); */
        
         $user = Auth::user()->id;
-        $transacao = transacao::latest()->where('users_id', $user)->first();
+        $transacao = Transacao::latest()->where('users_id', $user)->first();
         $pagamento = Pagamento::orderBy('id', 'desc')->get();
 
         if (isset($transacao)) {
