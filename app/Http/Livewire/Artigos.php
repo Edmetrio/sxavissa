@@ -29,7 +29,7 @@ class Artigos extends Component
         $artigo = Artigo::where('nome', 'like' ,'%'.$this->search.'%')->
                             orWhere('codigobarra', 'like' ,'%'.$this->search.'%')->
                             with(['categorias','subcategorias','tipos','stocks'])->
-                            orderBy('id', 'desc')->paginate(5);
+                            orderBy('id', 'desc')->paginate(10);
                             
         $tipo = Tipo::orderBy('id', 'desc')->get();
         $subcategoria = Subcategoria::orderBy('id', 'desc')->get();
