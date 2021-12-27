@@ -50,6 +50,22 @@
                     <div class="p-field p-col-12 p-md-6" style="text-align: center;">
                         <span><img src="{{asset('./assets/images/categoria/'.$categoria->icon)}}" style="width: 15%;" /></span>
                     </div>
+
+                    <div class="p-field p-col-12 p-md-6">
+                        <label class="ui-outputlabel ui-widget" for="lastname2">Estado</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="estado" id="estado1" value="on" @if($categoria->estado === 'on') checked @else  @endif>
+                            <label class="form-check-label" for="estado1">
+                                Ligado
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="estado" id="estado2" value="off" @if($categoria->estado === 'off') checked @else  @endif>
+                            <label class="form-check-label" for="estado2">
+                                Desligado
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
