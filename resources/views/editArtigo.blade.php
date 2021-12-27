@@ -33,7 +33,8 @@
             @endif
 
 
-            <form action="{{url('artigo')}}" method="POST" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('artigo.update', $artigo->id) }}"  enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="ui-fluid p-formgrid p-grid">
                     <div class="p-field p-col-12 p-md-6">
@@ -105,18 +106,21 @@
 
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Preço</label>
-                        <input name="preco" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                        <input name="preco" type="text" value="{{$artigo->preco}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                     </div>
+
+                    @foreach($artigo->stocks as $s)
 
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Estoque Mínimo</label>
-                        <input name="stockminimo" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                        <input name="stockminimo" type="text" value="{{$s->stockminimo}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                     </div>
 
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Quantidade</label>
-                        <input name="quantidade" type="numeric" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                        <input name="quantidade" type="numeric" value="{{$s->quantidade}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                     </div>
+                    @endforeach
 
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Iva</label>
@@ -125,14 +129,15 @@
 
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Desconto</label>
-                        <input name="desconto" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
+                        <input name="desconto" type="text" value="{{$artigo->desconto}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
                     </div>
 
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Garantia</label>
-                        <input name="garantia" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
-                        <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required hidden value="ecea0218-af0a-4457-85a3-226867688b83" />
+                        <input name="garantia" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="{{$artigo->garantia}}" />
+                        <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required hidden value="{{Auth::user()->id}}" />
                     </div>
+
                 </div>
 
                 <div class="p-field p-col-12 p-md-1">
