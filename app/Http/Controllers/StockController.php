@@ -17,7 +17,6 @@ class StockController extends Controller
         $stock = Stock::with(['users','artigos','unidades','armazens'])->orderBy('id', 'asc')->cursorPaginate(5);
         return view('stock', compact('stock'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
-        dd($stock);
     }
 
     /**
