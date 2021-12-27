@@ -41,6 +41,7 @@
             </div>
             @endif -->
 
+            @if (isset($relatorio))
             @if (!is_null($selectedUser))
             <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
                 <caption>Lista dos Artigos</caption>
@@ -69,6 +70,11 @@
                 <td></td>
                 <td style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">Total: {{$relatorio->valor_total}}.00MT</td>
             </table>
+            @else
+            <h1>Dados não encontrados</h1>
+            @endif
+            @else
+            <h1>Dados não encontrados</h1>
             @endif
         </div>
 

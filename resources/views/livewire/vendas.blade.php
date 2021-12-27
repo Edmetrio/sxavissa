@@ -72,7 +72,6 @@
 
                 @endif
 
-
                 @if ($message = Session::get('status'))
                 <div>
                     <p class="alert alert-success" class="table p-field p-col-12 p-md-6 table-striped" style="text-align: center;">{{ $message }}</p>
@@ -99,9 +98,9 @@
                             <td>{{$c->artigos->codigobarra ?? ''}}</td>
                             <td>{{$c->artigos->nome ?? ''}}</td>
                             <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon ?? ''}}" style="width: 30px; text-align: center;" /></td>
-                            <td>{{$c->artigos->preco ?? ''}}</td>
+                            <td>{{number_format($c->artigos->preco, 2, ',','.') ?? ''}}</td>
                             <td>{{$c->quantidade ?? ''}}</td>
-                            <td>{{$c->valor_total ?? ''}}</td>
+                            <td>{{number_format($c->valor_total, 2, ',','.') ?? ''}}</td>
                             <td>
                                 <form action="{{ route('itemtransacao.destroy',$c->id)}}" method="POST">
                                     @csrf
@@ -115,11 +114,13 @@
 
                     </tbody>
                 </table>
-                <div class="table p-field p-col-12 p-md-6 table table-striped" style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">
+                <div class="table p-field p-col-12 p-md-6 table table-striped" style="text-align: right;">
                     <p>
                         <hr>
-                        SubTotal: {{$total}},00MT
-                        <input hidden name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                        <strong style="font-size: 15px; font-weight: bold; color: cadetblue; margin-right: 100px;">SubTotal</strong> {{ number_format($total, 2, ',','.')}}MT<br>
+                        <strong style="font-size: 15px; font-weight: bold; color: cadetblue; margin-right: 100px;">IVA 17% </strong>{{ number_format($itens->iva, 2, ',','.')}}MT<br>
+                        <strong style="font-size: 15px; font-weight: bold; color: cadetblue; margin-right: 100px;">Total </strong>{{ number_format($itens->total, 2, ',','.')}}MT
+                        <input hidden name="valortotal" value="{{$itens->total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                         <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                         <hr>
 
@@ -155,14 +156,14 @@
                     <input hidden name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                     <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                     <div class="p-field p-col-12 p-md-6">
-                            <label class="ui-outputlabel ui-widget" for="">Tipo de Pagamento</label>
-                            <select name="pagamento_id" class="form-control">
-                            <option value="">Seleccione o tipo de Pagamento</option>    
+                        <label class="ui-outputlabel ui-widget" for="">Tipo de Pagamento</label>
+                        <select name="pagamento_id" class="form-control">
+                            <option value="">Seleccione o tipo de Pagamento</option>
                             @foreach($pagamento as $c)
-                                <option value="{{$c->id}}">{{$c->nome}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                            <option value="{{$c->id}}">{{$c->nome}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="p-field p-col-12 p-md-4">
                         <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                             <span class="ui-button-text ui-c">Finalizar</span></button>

@@ -42,8 +42,8 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Nome da Categoria</label>
                             <select name="categoria_id" wire:model="selectedCategoria" class="form-control">
-                            <option value="">Seleccione a Categoria</option>    
-                            @foreach($categoria as $c)
+                                <option value="">Seleccione a Categoria</option>
+                                @foreach($categoria as $c)
                                 <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
                             </select>
@@ -63,6 +63,7 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Tipo</label>
                             <select name="tipo_id" class="form-control">
+                                <option value="">Seleccione o Tipo</option>
                                 @foreach($tipo as $c)
                                 <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
@@ -82,6 +83,7 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Armazém</label>
                             <select name="armazem_id" class="form-control">
+                                <option value="">Seleccione o Armazém</option>
                                 @foreach($armazem as $c)
                                 <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
@@ -91,6 +93,7 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Unidade</label>
                             <select name="unidade_id" class="form-control">
+                                <option value="">Seleccione a Unidade</option>
                                 @foreach($unidade as $c)
                                 <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
@@ -114,68 +117,80 @@
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Iva</label>
-                            <input name="iva" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
+                            <input name="iva" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="" />
                         </div>
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Desconto</label>
-                            <input name="desconto" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
+                            <input name="desconto" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="" />
                         </div>
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Garantia</label>
-                            <input name="garantia" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="2" />
-                            <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required hidden value="ecea0218-af0a-4457-85a3-226867688b83" />
+                            <input name="garantia" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="" />
+                            <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required hidden value="{{Auth::user()->id}}" />
                         </div>
                     </div>
-                    <div class="p-field p-col-12 p-md-1">
+                    <div class="p-field p-col-12 p-md-4">
                         <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                             <span class="ui-button-text ui-c">Adicionar</span></button>
+
+                        <a href="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                            <span class="ui-button-text ui-c">Leitura de QBarra</span>
+                        </a>
                     </div>
                 </form>
 
                 <label class="ui-outputlabel ui-widget" for="">Procurar</label>
                 <input wire:model="search" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="Procurar..." />
-                <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
-                    <caption>Lista dos Artigos</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Codigo de Barra</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">SubCategoria</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Ícone</th>
-                            <th scope="col">Preço</th>
-                            <th scope="col">Iva</th>
-                            <th scope="col">Acções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($artigo as $c)
-                        <tr>
-                            <td>{{$c->codigobarra}}</td>
-                            <td>{{$c->nome}}</td>
-                            <td>{{$c->categorias->nome}}</td>
-                            <td>{{$c->subcategorias->nome}}</td>
-                            <td>{{$c->tipos->nome}}</td>
-                            <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
-                            <td>{{$c->preco}}</td>
-                            <td>{{$c->iva}}</td>
-                            <td role="gridcell" style="display: flex; justify-content: flex-start;">
-                                <a href="{{url("artigo/$c->id/edit")}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only edit-button rounded-button ui-button-success"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
-                                <form action="{{ route('subcategoria.destroy',$c->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-trash"></span><span class="ui-button-text ui-c">ui-button</span></button>
-                                </form>
-                            </td>
-                        </tr>
+                <div class="table-responsive-md">
+                    <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
+                        <caption>Lista dos Artigos</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Codigo de Barra</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">SubCategoria</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Ícone</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Iva</th>
+                                <th scope="col">Acções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($artigo as $c)
+                            <tr>
+                                <td>{{$c->codigobarra}}</td>
+                                <td>{{$c->nome}}</td>
+                                <td>{{$c->categorias->nome}}</td>
+                                <td>{{$c->subcategorias->nome}}</td>
+                                <td>{{$c->tipos->nome}}</td>
+                                <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
+                                <td>{{ number_format($c->preco, 2, ',','.')}}MT</td>
+                                <td>{{$c->iva}}</td>
+                                <td role="gridcell" style="display: flex; justify-content: flex-start;">
+                                    <a href="{{url("artigo/$c->id/edit")}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only edit-button rounded-button ui-button-success"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
+                                    <form action="{{ route('subcategoria.destroy',$c->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-trash"></span><span class="ui-button-text ui-c">ui-button</span></button>
+                                    </form>
+                                </td>
+                            </tr>
 
-                        @endforeach
-                    </tbody>
-                </table>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 {{$artigo->links()}}
+                <style>
+                    .w-5 {
+                        display: none;
+                        margin-left: 20%;
+                    }
+                </style>
             </div>
 
         </div>
