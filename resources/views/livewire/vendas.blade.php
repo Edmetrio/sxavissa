@@ -37,36 +37,38 @@
                 <form action="{{url('itemtransacao')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
-                    <table class="table p-field p-col-12 p-md-6 table table-striped" style="margin-top: 2%;">
-                        <caption>Lista de Pesquisa</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">Codigo de Barra</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Ícone</th>
-                                <th scope="col">Preço</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Adicionar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($artigo as $c)
-                            <input hidden name="artigo_id" value="{{ $c->id ?? ''}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                    <div class="table-responsive-md">
+                        <table class="table p-field p-col-12 p-md-6 table table-striped" style="margin-top: 2%;">
+                            <caption>Lista de Pesquisa</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Codigo de Barra</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Ícone</th>
+                                    <th scope="col">Preço</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">Adicionar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($artigo as $c)
+                                <input hidden name="artigo_id" value="{{ $c->id ?? ''}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
 
-                            <tr>
-                                <td>{{$c->codigobarra}}</td>
-                                <td>{{$c->nome}}</td>
-                                <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
-                                <td>{{$c->preco}}</td>
-                                <td><input name="quantidade" type="number" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="1" style="width: 70px; text-align: center;" /></td>
-                                <td role="gridcell" style="display: flex; justify-content: flex-start;">
-                                    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only edit-button rounded-button ui-button-success"><span class="ui-button-icon-left ui-icon ui-c pi pi-check"></span><span class="ui-button-text ui-c">ui-button</span></button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{$c->codigobarra}}</td>
+                                    <td>{{$c->nome}}</td>
+                                    <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
+                                    <td>{{$c->preco}}</td>
+                                    <td><input name="quantidade" type="number" min="1" value="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="1" style="width: 70px; text-align: center;" /></td>
+                                    <td role="gridcell" style="display: flex; justify-content: flex-start;">
+                                        <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only edit-button rounded-button ui-button-success"><span class="ui-button-icon-left ui-icon ui-c pi pi-check"></span><span class="ui-button-text ui-c">ui-button</span></button>
+                                    </td>
+                                </tr>
 
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </form>
                 @else
 
@@ -79,41 +81,43 @@
                 @endif
 
                 @if(isset($artigo))
-                <table class="table p-field p-col-12 p-md-6 table table-striped" style="margin-top: 2%;">
-                    <caption>Lista de Itens Adicionados</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Codigo de Barra</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Ícone</th>
-                            <th scope="col">Preço</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">SubTotal</th>
-                            <th scope="col">Apagar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($itens as $c)
-                        <tr>
-                            <td>{{$c->artigos->codigobarra ?? ''}}</td>
-                            <td>{{$c->artigos->nome ?? ''}}</td>
-                            <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon ?? ''}}" style="width: 30px; text-align: center;" /></td>
-                            <td>{{number_format($c->artigos->preco, 2, ',','.') ?? ''}}</td>
-                            <td>{{$c->quantidade ?? ''}}</td>
-                            <td>{{number_format($c->valor_total, 2, ',','.') ?? ''}}</td>
-                            <td>
-                                <form action="{{ route('itemtransacao.destroy',$c->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-trash"></span><span class="ui-button-text ui-c">ui-button</span></button>
-                                </form>
-                            </td>
-                        </tr>
+                <div class="table-responsive-md">
+                    <table class="table p-field p-col-12 p-md-6 table table-striped" style="margin-top: 2%;">
+                        <caption>Lista de Itens Adicionados</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Codigo de Barra</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Ícone</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">SubTotal</th>
+                                <th scope="col">Apagar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($itens as $c)
+                            <tr>
+                                <td>{{$c->artigos->codigobarra ?? ''}}</td>
+                                <td>{{$c->artigos->nome ?? ''}}</td>
+                                <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon ?? ''}}" style="width: 30px; text-align: center;" /></td>
+                                <td>{{number_format($c->artigos->preco, 2, ',','.') ?? ''}}</td>
+                                <td>{{$c->quantidade ?? ''}}</td>
+                                <td>{{number_format($c->valor_total, 2, ',','.') ?? ''}}</td>
+                                <td>
+                                    <form action="{{ route('itemtransacao.destroy',$c->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-trash"></span><span class="ui-button-text ui-c">ui-button</span></button>
+                                    </form>
+                                </td>
+                            </tr>
 
-                        @endforeach
+                            @endforeach
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="table p-field p-col-12 p-md-6 table table-striped" style="text-align: right;">
                     <p>
                         <hr>
@@ -163,6 +167,10 @@
                             <option value="{{$c->id}}">{{$c->nome}}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline" style="margin-left: 10px;">
+                        <input type="checkbox" name="gerar" class="custom-control-input" id="defaultInline1">
+                        <label class="custom-control-label" for="defaultInline1">Gerar Recibo</label>
                     </div>
                     <div class="p-field p-col-12 p-md-4">
                         <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
