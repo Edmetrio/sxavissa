@@ -119,20 +119,14 @@ class ArtigoController extends Controller
 
     public function update(Request $request, $id)
     {
-        /* $request->validate([
+        $request->validate([
             'codigobarra' => 'required|numeric',
             'nome' => 'required',
             'categoria_id' => 'required',
             'subcategoria_id' => 'required',
             'tipo_id' => 'required',
             'preco' => 'required',
-            'iva' => 'required',
-            'desconto' => 'required',
-            'armazem_id' => 'required',
-            'quantidade' => 'required',
-            'stockminimo' => 'required',
-            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]); */
+        ]);
 
         $input = $request->all();
         $stocki = $request->all();
