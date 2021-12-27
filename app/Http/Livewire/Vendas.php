@@ -10,6 +10,7 @@ use App\Models\Models\Pagamento;
 use App\Models\Models\transacao;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use phpDocumentor\Reflection\Types\Null_;
 
 class Vendas extends Component
 {
@@ -30,7 +31,11 @@ class Vendas extends Component
     public function render()
     {
 
-        $artigo = Artigo::where('nome', 'like', '%' . $this->search . '%')->orWhere('codigobarra', 'like', '%' . $this->search . '%')->with(['categorias', 'subcategorias', 'tipos', 'stocks'])->orderBy('id', 'desc')->paginate(2);
+        $artigo = Artigo::where('nome', 'like', '%' . $this->search . '%')
+                        ->orWhere('codigobarra', 'like', '%' . $this->search . '%')
+                        ->with(['categorias', 'subcategorias', 'tipos', 'stocks'])
+                        ->orderBy('id', 'desc')->paginate(3);
+                       /*  dd($artigo); */
        
         $user = Auth::user()->id;
         $transacao = transacao::latest()->where('users_id', $user)->first();
@@ -44,6 +49,10 @@ class Vendas extends Component
                 $t += $item->valor_total;
             }
             $total = $t;
+            $itens->iva = $iva = $t * 0.17;
+            $itens->total = $iva + $t;
+            
+            
             return view('livewire.vendas', compact('artigo', 'itens', 'total', 'transacao','pagamento'));
         } else {
             $itens = Itemtransacao::with(['transacaos', 'artigos'])->get();
@@ -57,4 +66,5 @@ class Vendas extends Component
             $this->subcategoria = Subcategoria::where('categoria_id', $categoria_id)->get();
         }
     }
+
 }
