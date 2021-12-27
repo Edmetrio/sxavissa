@@ -39,7 +39,7 @@ class ItemtransacaoController extends Controller
     {
 
         $artigo = Stock::where('artigo_id', $request->artigo_id)->with('artigos')->first();
-        if ($artigo->quantidade >= $request->quantidade) {
+        if ($artigo->quantidade >= $request->quantidade && $request->quantidade >= 1) {
             $diminui = $artigo->quantidade - $request->quantidade;
             $itens->create($request->all());
             if ($itens) {
