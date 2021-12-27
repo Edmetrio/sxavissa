@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Models\transacao;
+use App\Models\Models\Transacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +36,7 @@ class TransacaoController extends Controller
      */
     public function store(Request $request)
     {
-        $transacao = transacao::create($request->all());
+        $transacao = Transacao::create($request->all());
         if ($transacao) {
             $request->session()->flash('status', 'Venda Iniciada');
             return redirect('vendas');
