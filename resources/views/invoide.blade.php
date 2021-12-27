@@ -1,97 +1,109 @@
-@extends('templates.templates')
+@extends('templates.templateInvoice')
 
 @section('content')
 
-<div class="p-grid">
-    <div class="p-col">
-        <div class="card">
-            <div id="invoice-content" class="ui-outputpanel ui-widget">
-                <div class="invoice">
-                    <div class="invoice-header">
-                        <div class="invoice-company"><img id="invoice-logo" src="javax.faces.resource/images/ecuador-orange-logo.png60d1.png?ln=ecuador-layout" alt="" class="logo-image" />
-                            <div class="company-name">YOUR COMPANY</div>
-                            <div>9137 3rd Lane California City</div>
-                            <div>CA 93504, U.S.A.</div>
-                        </div>
-                        <div>
-                            <div class="invoice-title">INVOICE</div>
-                            <div class="invoice-details">
-                                <div class="invoice-label">DATE</div>
-                                <div class="invoice-value">2021-11-04</div>
+<div class="layout-content"><button id="j_idt96" name="j_idt96" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" onclick="PrimeFaces.expressions.SearchExpressionFacade.resolveComponentsAsSelector('invoice-content').print();return false;" style="margin-bottom: 2rem" type="button"><span class="ui-button-icon-left ui-icon ui-c pi pi-print"></span><span class="ui-button-text ui-c">Print</span></button>
+    <script id="j_idt96_s" type="text/javascript">
+        $(function() {
+            PrimeFaces.cw("CommandButton", "widget_j_idt96", {
+                id: "j_idt96",
+                behaviors: {
+                    click: function(ext, event) {
+                        PrimeFaces.expressions.SearchExpressionFacade.resolveComponentsAsSelector('invoice-content').print();
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
 
-                                <div class="invoice-label">INVOICE #</div>
-                                <div class="invoice-value">8523</div>
+        <div class="p-grid">
+            <div class="p-col">
+                <div class="card">
+                    <div id="invoice-content" class="ui-outputpanel ui-widget">
+                        <div class="invoice">
+                            <div class="invoice-header">
+                                <div class="invoice-company"><img id="invoice-logo" src="{{asset('./assets/images/logo.png')}}" alt="" class="logo-image" />
+                                    <div class="company-name">SyDevelop - Xavissa</div>
+                                    <div>Av. Julius Nyerere, nº. 1200</div>
+                                    <div>Telefone: +258 000 0000</div>
+                                    <div>Maputo, Moçambique</div>
+                                </div>
+                                <div>
+                                    <div class="invoice-title">Recibo</div>
+                                    <div class="invoice-details">
+                                        <div class="invoice-label">DATA</div>
+                                        <div class="invoice-value">{{$hist->created_at->format('d-m-y')}}</div>
 
-                                <div class="invoice-label">CUSTOMER ID</div>
-                                <div class="invoice-value">C1613</div>
+                                        <div class="invoice-label">RECIBO #</div>
+                                        <div class="invoice-value">{{$hist->id}}</div>
+
+                                        <div class="invoice-label">Funcionário</div>
+                                        <div class="invoice-value">{{$hist->users->id}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="invoice-to">
+                                <div class="bill-to">Funcionário</div>
+                                <div class="invoice-to-info">
+                                    <div>{{$hist->users->name}}</div>
+                                    <div>Maputo, Moçambique </div>
+                                </div>
+                            </div>
+                            <div class="invoice-items">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <th>Quantidade</th>
+                                            <th>Preço</th>
+                                            <th>SubTotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($historico as $h)
+                                        <tr>
+                                            <td>{{$h->artigos->nome}}</td>
+                                            <td>{{$h->quantidade}}</td>
+                                            <td>{{ number_format($h->artigos->preco, 2, ',','.')}}MT</td>
+                                            <td>{{$h->subtotal}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="invoice-summary">
+                                <div class="invoice-notes">
+                                    <b>Pagamento Via:</b>
+                                    <div>
+                                        {{$hist->pagamentos->nome}}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="invoice-details">
+                                        <div class="invoice-label">SUBTOTAL</div>
+                                        <div class="invoice-value">{{ number_format($historico->total, 2, ',','.')}}MT</div>
+
+                                        <div class="invoice-label">IVA</div>
+                                        <div class="invoice-value">17%</div>
+
+                                        <div class="invoice-label">TOTAL</div>
+                                        <div class="invoice-value">{{ number_format($historico->tt, 2, ',','.')}}MT</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                            <div class="company-name">Processado por Computador</div>
+                            <div class="invoice-label">THANK YOU!!!</div>
+                            <div class="invoice-label">Xavissa</div>
                             </div>
                         </div>
                     </div>
-                    <div class="invoice-to">
-                        <div class="bill-to">BILL TO</div>
-                        <div class="invoice-to-info">
-                            <div>Claire Williams, 148 Hope Lane</div>
-                            <div>Palo Alto, CA 94304. </div>
-                        </div>
-                    </div>
-                    <div class="invoice-items">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Description</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Line Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Green T-Shirt</td>
-                                    <td>1</td>
-                                    <td>$49.00</td>
-                                    <td>$49.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Game Controller</td>
-                                    <td>2</td>
-                                    <td>$99.00</td>
-                                    <td>$198.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Mini Speakers</td>
-                                    <td>1</td>
-                                    <td>$85.00</td>
-                                    <td>$85.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="invoice-summary">
-                        <div class="invoice-notes">
-                            <b>NOTES</b>
-                            <div>
 
-                            </div>
-                        </div>
-                        <div>
-                            <div class="invoice-details">
-                                <div class="invoice-label">SUBTOTAL</div>
-                                <div class="invoice-value">$332.00</div>
 
-                                <div class="invoice-label">VAT</div>
-                                <div class="invoice-value">0</div>
-
-                                <div class="invoice-label">TOTAL</div>
-                                <div class="invoice-value">$332.00</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection
