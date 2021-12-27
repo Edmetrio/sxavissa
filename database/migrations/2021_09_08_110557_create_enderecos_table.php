@@ -15,7 +15,7 @@ class CreateEnderecosTable extends Migration
     {
         Schema::create('endereco', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('users_id')->nullable();
+            $table->uuid('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nome')->nullable();
             $table->string('estado')->default('on');
