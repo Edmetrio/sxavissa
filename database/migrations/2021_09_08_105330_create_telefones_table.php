@@ -15,9 +15,9 @@ class CreateTelefonesTable extends Migration
     {
         Schema::create('telefone', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('users_id')->nullable();
+            $table->uuid('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('operadora_id')->nullable();
+            $table->uuid('operadora_id')->nullable();
             $table->foreign('operadora_id')->references('id')->on('operadora')->onDelete('cascade')->onUpdate('cascade');
             $table->string('numero')->nullable();
             $table->string('estado')->default('on');
