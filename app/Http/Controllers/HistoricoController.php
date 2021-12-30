@@ -42,7 +42,11 @@ class HistoricoController extends Controller
      */
     public function store(Request $request)
     {
-        /* return $request->all(); */
+        $request->validate([
+            'valortotal' => 'required|numeric',
+            'transacao_id' => 'required',
+            'pagamento_id' => 'required',
+        ]);
 
         if (isset($request->gerar)) {
 
