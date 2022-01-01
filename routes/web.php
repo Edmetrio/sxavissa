@@ -1,26 +1,36 @@
 <?php
 
+use App\Http\Controllers\AumentoController;
 use App\Http\Controllers\TelefoneController;
 use App\Http\Controllers\ArmazemController;
 use App\Http\Controllers\ArtigoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CodeController;
+use App\Http\Controllers\ComposicaoController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\InvoideController;
 use App\Http\Controllers\ItemtransacaoController;
+use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\TransacaoController;
 use App\Http\Livewire\Artigos;
 use App\Http\Livewire\Categoria;
+use App\Http\Livewire\Composicaos;
+use App\Http\Livewire\Materia;
+use App\Http\Livewire\Materias;
 use App\Http\Livewire\Relatorios;
 use App\Http\Livewire\Vendas;
+use App\Models\Models\Materia as ModelsMateria;
 use App\Models\Models\Stock;
 use Illuminate\Support\Facades\Route;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,15 +66,21 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('transacao', TransacaoController::class);
     Route::resource('historico', HistoricoController::class);
     Route::resource('relatorio', RelatorioController::class);
+    Route::resource('aumento', AumentoController::class);
+    Route::resource('composicao', ComposicaoController::class);
+    Route::resource('materia', MateriaController::class);
 
     Route::get('artigos', Artigos::class);
     Route::get('vendas', Vendas::class);
     Route::get('relatorios', Relatorios::class);
+    Route::get('materia', Materias::class);
+    Route::get('composicaos', Composicaos::class);
 });
 
 Route::resource('home', HomeController::class);
 
 Route::get('lcategoria', Categoria::class);
+Route::get('qrcode', [QrCodeController::class, 'index']);
 
 
 require __DIR__.'/auth.php';
