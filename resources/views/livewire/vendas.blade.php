@@ -79,6 +79,16 @@
                     <p class="alert alert-success" class="table p-field p-col-12 p-md-6 table-striped" style="text-align: center;">{{ $message }}</p>
                 </div>
                 @endif
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Opss!</strong> Algum problema com seu formulário<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
                 @if(isset($artigo))
                 <div class="table-responsive-md">
@@ -161,7 +171,7 @@
                     <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Tipo de Pagamento</label>
-                        <select name="pagamento_id" class="form-control">
+                        <select name="pagamento_id" class="form-control" required>
                             <option value="">Seleccione o tipo de Pagamento</option>
                             @foreach($pagamento as $c)
                             <option value="{{$c->id}}">{{$c->nome}}</option>
