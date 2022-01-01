@@ -34,10 +34,24 @@
                 <form action="{{url('artigo')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="ui-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-6">
+                            <label class="ui-outputlabel ui-widget" for="">Tipo</label>
+                            <select wire:model="selectedTipo" class="form-control">
+                                <option value="">Seleccione o Tipo</option>
+                                @foreach($tipo as $c)
+                                <option value="{{$c->id}}">{{$c->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @if (isset($selectedTipo))
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Código de Barra</label>
                             <input name="codigobarra" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                         </div>
+                        @elseif(!empty($selectedTipo))
+                        Aqui
+                        @endif
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Nome da Categoria</label>
@@ -59,16 +73,6 @@
                             </select>
                         </div>
                         @endif
-
-                        <div class="p-field p-col-12 p-md-6">
-                            <label class="ui-outputlabel ui-widget" for="">Tipo</label>
-                            <select name="tipo_id" class="form-control">
-                                <option value="">Seleccione o Tipo</option>
-                                @foreach($tipo as $c)
-                                <option value="{{$c->id}}">{{$c->nome}}</option>
-                                @endforeach
-                            </select>
-                        </div>
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Nome do Artigo</label>
