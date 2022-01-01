@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Models\Armazem;
 use App\Models\Models\Artigo;
 use App\Models\Models\Aumento;
 use App\Models\Models\Materia;
@@ -23,7 +24,10 @@ class AumentoController extends Controller
         $pagamento = Pagamento::orderBy('id', 'desc')->get();
         $materia = Materia::orderBy('id', 'desc')->get();
         $unidade = Unidade::orderBy('id', 'desc')->get();
-        return view('aumento', compact('artigo','pagamento','materia','unidade'));
+        $armazem = Armazem::orderBy('id', 'desc')->get();
+        $aumento = Aumento::with(['artigos','users','pagamentos','unidades','materias','armazems'])->get();
+        /* dd($aumento); */
+        return view('aumento', compact('aumento','artigo','pagamento','materia','unidade','armazem'));
     }
 
     /**
@@ -48,15 +52,17 @@ class AumentoController extends Controller
         $request->validate([
             'pagamento_id' => 'required',
             'unidade_id' => 'required',
+            'armazem_id' => 'required',
             'numerolote' => 'required',
             'quantidade' => 'required',
             'validade' => 'required',
         ]);
 
         $aumento = Aumento::create($request->all());
-        $estoque = Stock::where(['artigo_id' => $request->artigo_id])->
-        Stock::where(['artigo_id' => $request->artigo_id])->update(['quantidade' => $request->quantidade]);
-        if ($aumento) {
+        $estoque = Stock::where(['artigo_id' => $request->artigo_id])->first();
+        $aumento = $estoque->quantidade + $request->quantidade;
+        Stock::where(['artigo_id' => $request->artigo_id])->update(['quantidade' => $aumento]);
+        if ($estoque) {
             $request->session()->flash('status', 'Item Adicionado');
             return redirect('aumento');
         }
