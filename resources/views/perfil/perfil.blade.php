@@ -49,23 +49,18 @@
                                     <div class="ui-card-subtitle">
                                         {{ Auth::user()->name }}
                                     </div>
+                                    
                                     @foreach($perfil->perfils as $p)
                                     <div class="ui-card-content"><img src="{{asset('./assets/images/users/'.$p->icon)}}" class="p-shadow-2" alt="Avatar" width="100" />
                                         <p>Nome da Empresa: {{$p->nome}}<br />
                                             Nuit: {{$p->nuit}}<br />
                                             <a href="{{ route('perfil.edit',$p->id)}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
-                                        <!-- <form action="{{ route('perfil.destroy',$p->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-trash"></span><span class="ui-button-text ui-c">ui-button</span></button>
-                                        </form> -->
                                     </div>
                                     @endforeach
                                     <div>
                                         <a href="{{url('perfil/create')}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                                             <span class="ui-button-text ui-c">Adicionar</span></a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
