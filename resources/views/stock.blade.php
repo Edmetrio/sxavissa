@@ -51,10 +51,10 @@
                         @foreach($stock as $c)
                         <tr>
                             <td scope="row">{{ ++$i }}</td>
-                            <td>{{$c->artigos->nome}}</td>
+                            <td>{{$c->artigos->nome ?? $c->materias->nome}}</td>
                             <td>{{$c->quantidade}}</td>
-                            <td>{{ number_format($c->artigos->preco, 2, ',','.')}}MT</td>
-                            <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon}}" style="width: 30px; text-align: center;" /></td>
+                            <td>{{$c->artigos->preco ?? $c->materias->preco}}</td>
+                            <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon ?? ''}}" image="" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->armazens->nome}}</td>
                             <td>{{$c->stockminimo}}</td>
 
