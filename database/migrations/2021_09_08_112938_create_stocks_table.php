@@ -23,6 +23,8 @@ class CreateStocksTable extends Migration
             $table->foreign('unidade_id')->references('id')->on('unidade')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('armazem_id')->nullable();
             $table->foreign('armazem_id')->references('id')->on('armazem')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('materia_id')->nullable();
+            $table->foreign('materia_id')->references('id')->on('materia')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('custo', 20,2)->nullable();
             $table->decimal('quantidade', 20,2)->nullable();
             $table->decimal('stockminimo', 20,2)->nullable();
