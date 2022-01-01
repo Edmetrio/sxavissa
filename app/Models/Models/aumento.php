@@ -2,11 +2,12 @@
 
 namespace App\Models\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class aumento extends Model
+class Aumento extends Model
 {
     use HasFactory, Uuid;
 
@@ -15,11 +16,20 @@ class aumento extends Model
     protected $guarded = [];
 
     protected $table = 'aumento';
-    protected $fillable = ['artigo_id','unidade_id','transacao_id','numerolote','custo','quantidade','validade','estado'];
+    protected $fillable = ['users_id','artigo_id','pagamento_id','unidade_id','materia_id','armazem_id','numerolote','custo','quantidade','validade','estado'];
 
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id', 'users_id');
+    }
     public function artigos()
     {
         return $this->hasOne(Artigo::class, 'id', 'artigo_id');
+    }
+
+    public function pagamentos()
+    {
+        return $this->hasOne(Pagamento::class, 'id', 'pagamento_id');
     }
 
     public function unidades()
@@ -27,8 +37,15 @@ class aumento extends Model
         return $this->hasOne(Unidade::class, 'id', 'unidade_id');
     }
 
-    public function transacaos()
+    public function materias()
     {
-        return $this->hasOne(transacao::class, 'id', 'transacao_id');
+        return $this->hasOne(Materia::class, 'id', 'materia_id');
     }
+
+    public function armazems()
+    {
+        return $this->hasOne(Armazem::class, 'id', 'armazem_id');
+    }
+
+    
 }
