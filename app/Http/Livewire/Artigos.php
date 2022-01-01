@@ -14,14 +14,18 @@ class Artigos extends Component
 {
     public $categoria;
     public $subcategoria;
+    public $tipo;
+    public $tipos;
 
     public $search = '';
 
     public $selectedCategoria = NULL;
+    public $selectedTipo = NULL;
 
     public function mount()
     {
         $this->categoria = Categoria::orderBy('id', 'desc')->get();
+        $this->tipo = Tipo::orderBy('id', 'desc')->get();
     }
 
     public function render()
@@ -46,6 +50,17 @@ class Artigos extends Component
     {
         if (!is_null($categoria_id)){
             $this->subcategoria = Subcategoria::where('categoria_id', $categoria_id)->get();
+        }
+    }
+
+    public function updatedSelectedTipo($tipo_id)
+    {
+        if (!is_null($tipo_id))
+        {
+            $this->tipos = Tipo::where('id', $tipo_id)
+                                ->where('nome', 'Matéria-prima')
+                                ->get();
+            /* dd($this->tipos) */;
         }
     }
 }
