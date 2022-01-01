@@ -23,7 +23,7 @@
 
     <link href="{{asset('./assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 
-    
+
 </head>
 
 <body class="loading">
@@ -108,7 +108,7 @@
                             <a href="#sidebarEmail" data-toggle="collapse">
                                 <i></i>
                                 <span> Artigos </span>
-                                
+
                             </a>
                             <div class="collapse" id="sidebarEmail">
                                 <ul class="nav-second-level">
