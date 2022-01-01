@@ -31,11 +31,13 @@ class Vendas extends Component
     public function render()
     {
 
+        /* $categoria = Categoria::where('estado', 'on')->get();
+        dd($categoria); */
         $artigo = Artigo::where('nome', 'like', '%' . $this->search . '%')
                         ->orWhere('codigobarra', 'like', '%' . $this->search . '%')
                         ->with(['categorias', 'subcategorias', 'tipos', 'stocks'])
-                        ->orderBy('id', 'desc')->paginate(3);
-                       /*  dd($artigo); */
+                        ->orderBy('id', 'desc')->get();
+                        /* dd($artigo); */
        
         $user = Auth::user()->id;
         $transacao = Transacao::latest()->where('users_id', $user)->first();
