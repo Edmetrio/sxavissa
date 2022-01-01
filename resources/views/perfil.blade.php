@@ -19,135 +19,140 @@
 </div>
 <div class="layout-content">
 
-        <div class="p-grid">
-            <div class="p-col-12">
-                <div class="card">
-                    <h4>Meu Perfil</h4>
-                    <h5>Perfil</h5>
-                    @if(session('status'))
-                    <div class="alert alert-success" role="alert" style="text-align: center; font-weight: bold;">
-                        <p class="status">{{session('status')}}</p>
-                    </div>
-                    @endif
-                    <div id="form:j_idt97" class="ui-chronoline ui-widget customized-chronoline ui-chronoline-alternate ui-chronoline-vertical">
-                        <div class="ui-chronoline-event">
-                            <div class="ui-chronoline-event-opposite">&nbsp;</div>
-                            <div class="ui-chronoline-event-separator">
-                                <span class="custom-marker p-shadow-2" style="background-color: #9C27B0"><i class="pi pi-id-card"></i></span>
-                                <div class="ui-chronoline-event-connector"></div>
-                            </div>
-                            <div class="ui-chronoline-event-content">
-                                <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
-                                    <div class="ui-card-body">
-                                        <div class="ui-card-title">
-                                            Perfil
-                                        </div>
-                                        <div class="ui-card-subtitle">
-                                            {{ Auth::user()->name }}
-                                        </div>
-                                        @foreach($perfil->perfils as $p)
-                                        <div class="ui-card-content"><img src="{{asset('./assets/images/users/'.$p->icon)}}" class="p-shadow-2" alt="Avatar" width="100" />
-                                            <p>Nome da Empresa: {{$p->nome}}<br />
-                                                Nuit: {{$p->nuit}}<br />
-                                        </div>
-                                        <div>
-                                                <a href="{{url('perfil/create')}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
-                                                    <span class="ui-button-text ui-c">Adicionar</span></a>
-                                            </div>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="card">
+                <h4>Meu Perfil</h4>
+                <h5>Perfil</h5>
+                @if(session('status'))
+                <div class="alert alert-success" role="alert" style="text-align: center; font-weight: bold;">
+                    <p class="status">{{session('status')}}</p>
+                </div>
+                @endif
+                <div id="form:j_idt97" class="ui-chronoline ui-widget customized-chronoline ui-chronoline-alternate ui-chronoline-vertical">
+                    <div class="ui-chronoline-event">
+                        <div class="ui-chronoline-event-opposite">&nbsp;</div>
+                        <div class="ui-chronoline-event-separator">
+                            <span class="custom-marker p-shadow-2" style="background-color: #9C27B0"><i class="pi pi-id-card"></i></span>
+                            <div class="ui-chronoline-event-connector"></div>
+                        </div>
+                        <div class="ui-chronoline-event-content">
+                            <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-card-body">
+                                    <div class="ui-card-title">
+                                        Perfil
+                                    </div>
+                                    <div class="ui-card-subtitle">
+                                        {{ Auth::user()->name }}
+                                    </div>
+                                    @foreach($perfil->perfils as $p)
+                                    <div class="ui-card-content"><img src="{{asset('./assets/images/users/'.$p->icon)}}" class="p-shadow-2" alt="Avatar" width="100" />
+                                        <p>Nome da Empresa: {{$p->nome}}<br />
+                                            Nuit: {{$p->nuit}}<br />
                                     </div>
                                     @endforeach
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-chronoline-event">
-                            <div class="ui-chronoline-event-opposite">&nbsp;</div>
-                            <div class="ui-chronoline-event-separator">
-                                <span class="custom-marker p-shadow-2" style="background-color: #673AB7"><i class="pi pi-directions"></i></span>
-                                <div class="ui-chronoline-event-connector"></div>
-                            </div>
-                            <div class="ui-chronoline-event-content">
-                                <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
-                                    <div class="ui-card-body">
-                                        <div class="ui-card-title">
-                                            Endereço:
-                                        </div>
-                                        <div class="ui-card-content">
-                                            @foreach($perfil->enderecos as $e)
-                                            <p>{{$e->nome}}</p>
-                                            <a href="{{ route('endereco.edit',$e->id)}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
-                                            <hr />
-                                            @endforeach
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('endereco.create') }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
-                                                <span class="ui-button-text ui-c">Adicionar</span>
-                                            </a>
-                                        </div>
+                                    {{$perfil->perfils}}
+                                    @if(isset($perfil->perfils))
+                                    primeiro
+                                    <div>
+                                        <a href="{{url('perfil/create')}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                                            <span class="ui-button-text ui-c">Adicionar</span></a>
                                     </div>
+                                    @else
+                                    <p>Aqui</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="ui-chronoline-event">
-                            <div class="ui-chronoline-event-opposite">&nbsp;</div>
-                            <div class="ui-chronoline-event-separator">
-                                <span class="custom-marker p-shadow-2" style="background-color: #FF9800"><i class="pi pi-phone"></i></span>
-                                <div class="ui-chronoline-event-connector"></div>
-                            </div>
-                            <div class="ui-chronoline-event-content">
-                                <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
-                                    <div class="ui-card-body">
-                                        <div class="ui-card-title">
-                                            Telefone:
-                                        </div>
-                                        Números dos Telefones:
-                                        <div class="ui-card-content">
-                                            @foreach($perfil->telefones as $t)
-                                            {{$t->numero}}<br />
-                                            @endforeach
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('telefone.create') }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
-                                                <span class="ui-button-text ui-c">Adicionar</span>
-                                            </a>
-                                        </div>
+                    </div>
+                    <div class="ui-chronoline-event">
+                        <div class="ui-chronoline-event-opposite">&nbsp;</div>
+                        <div class="ui-chronoline-event-separator">
+                            <span class="custom-marker p-shadow-2" style="background-color: #673AB7"><i class="pi pi-directions"></i></span>
+                            <div class="ui-chronoline-event-connector"></div>
+                        </div>
+                        <div class="ui-chronoline-event-content">
+                            <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-card-body">
+                                    <div class="ui-card-title">
+                                        Endereço:
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui-chronoline-event">
-                            <div class="ui-chronoline-event-opposite">&nbsp;</div>
-                            <div class="ui-chronoline-event-separator">
-                                <span class="custom-marker p-shadow-2" style="background-color: #607D8B"><i class="pi pi-map-marker"></i></span>
-                            </div>
-                            <div class="ui-chronoline-event-content">
-                                <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
-                                    <div class="ui-card-body">
-                                        <div class="ui-card-title">
-                                            Armazém:
-                                        </div>
-                                        <div class="ui-card-content">
-                                            @foreach($perfil->armazems as $a)
-                                            <p><strong>Nome: </strong>{{$a->nome}}</p>
-                                            <p><strong>Endereço: </strong>{{$a->local}}</p>
-                                            <p><strong>Número:</strong>{{$a->numero}} </p>
-                                            <a href="{{url("armazem/$a->id/edit")}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
-                                            <hr />
-                                            @endforeach
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('armazem.create') }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
-                                                <span class="ui-button-text ui-c">Adicionar</span>
-                                            </a>
-                                        </div>
+                                    <div class="ui-card-content">
+                                        @foreach($perfil->enderecos as $e)
+                                        <p>{{$e->nome}}</p>
+                                        <a href="{{ route('endereco.edit',$e->id)}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
+                                        <hr />
+                                        @endforeach
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('endereco.create') }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                                            <span class="ui-button-text ui-c">Adicionar</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="ui-chronoline-event">
+                        <div class="ui-chronoline-event-opposite">&nbsp;</div>
+                        <div class="ui-chronoline-event-separator">
+                            <span class="custom-marker p-shadow-2" style="background-color: #FF9800"><i class="pi pi-phone"></i></span>
+                            <div class="ui-chronoline-event-connector"></div>
+                        </div>
+                        <div class="ui-chronoline-event-content">
+                            <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-card-body">
+                                    <div class="ui-card-title">
+                                        Telefone:
+                                    </div>
+                                    Números dos Telefones:
+                                    <div class="ui-card-content">
+                                        @foreach($perfil->telefones as $t)
+                                        {{$t->numero}}<br />
+                                        @endforeach
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('telefone.create') }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                                            <span class="ui-button-text ui-c">Adicionar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-chronoline-event">
+                        <div class="ui-chronoline-event-opposite">&nbsp;</div>
+                        <div class="ui-chronoline-event-separator">
+                            <span class="custom-marker p-shadow-2" style="background-color: #607D8B"><i class="pi pi-map-marker"></i></span>
+                        </div>
+                        <div class="ui-chronoline-event-content">
+                            <div id="form:j_idt98" class="ui-card ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-card-body">
+                                    <div class="ui-card-title">
+                                        Armazém:
+                                    </div>
+                                    <div class="ui-card-content">
+                                        @foreach($perfil->armazems as $a)
+                                        <p><strong>Nome: </strong>{{$a->nome}}</p>
+                                        <p><strong>Endereço: </strong>{{$a->local}}</p>
+                                        <p><strong>Número:</strong>{{$a->numero}} </p>
+                                        <a href="{{url("armazem/$a->id/edit")}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
+                                        <hr />
+                                        @endforeach
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('armazem.create') }}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                                            <span class="ui-button-text ui-c">Adicionar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-        </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:2" value="8626949082928866349:8311845988205506031" autocomplete="off" />
+        </div>
+    </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:2" value="8626949082928866349:8311845988205506031" autocomplete="off" />
 </div>
 @endsection
