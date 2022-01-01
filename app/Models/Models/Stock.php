@@ -18,7 +18,7 @@ class Stock extends Model
     /* protected $primaryKey = 'artigo_id'; */
 
     protected $table = 'stock';
-    protected $fillable = ['users_id','artigo_id','unidade_id','armazem_id','custo','quantidade','stockminimo','estado'];
+    protected $fillable = ['users_id','artigo_id','unidade_id','armazem_id','materia_id','custo','quantidade','stockminimo','estado'];
 
     public function users()
     {
@@ -38,5 +38,10 @@ class Stock extends Model
     public function armazens()
     {
         return $this->hasOne(Armazem::class, 'id', 'armazem_id');
+    }
+
+    public function materias()
+    {
+        return $this->hasOne(Materia::class, 'id', 'materia_id');
     }
 }
