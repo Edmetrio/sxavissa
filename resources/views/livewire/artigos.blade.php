@@ -36,7 +36,7 @@
                     <div class="ui-fluid p-formgrid p-grid">
                     <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Tipo</label>
-                            <select wire:model="selectedTipo" class="form-control">
+                            <select wire:model="selectedTipo" name="tipo_id" class="form-control">
                                 <option value="">Seleccione o Tipo</option>
                                 @foreach($tipo as $c)
                                 <option value="{{$c->id}}">{{$c->nome}}</option>
@@ -120,11 +120,6 @@
                         </div>
 
                         <div class="p-field p-col-12 p-md-6">
-                            <label class="ui-outputlabel ui-widget" for="">Iva</label>
-                            <input name="iva" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="" />
-                        </div>
-
-                        <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Desconto</label>
                             <input name="desconto" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="" />
                         </div>
@@ -133,6 +128,14 @@
                             <label class="ui-outputlabel ui-widget" for="">Garantia</label>
                             <input name="garantia" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required value="" />
                             <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required hidden value="{{Auth::user()->id}}" />
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-6">
+                            <label class="ui-outputlabel ui-widget" for="">Iva</label><br />
+                            <div class="custom-control custom-checkbox custom-control-inline" >
+                            <input type="checkbox" name="iva" class="custom-control-input" id="defaultInline1">
+                            <label class="custom-control-label" for="defaultInline1">Incluir Iva</label>
+                        </div>
                         </div>
                     </div>
                     <div class="p-field p-col-12 p-md-4">
