@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Models\Artigo;
 use App\Models\Models\Materia;
 use App\Models\Models\Stock;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        /* return view('materia'); */
+        $materia = Artigo::all();
     }
 
     /**
@@ -38,11 +39,12 @@ class MateriaController extends Controller
     {
         /* return $request->all(); */
         $request->validate([
-            'nome' => 'required|unique:materia,nome|min:5',
+            'nome' => 'required|unique:materia,nome',
             'preco' => 'required',
-            'armazem_id' => 'required',
-            'quantidade' => 'required',
             'stockminimo' => 'required',
+            'quantidade' => 'required',
+            'armazem_id' => 'required',
+            'unidade_id' => 'required',
         ]);
         $stocki = $request->all();
         $materia = Materia::create($request->all());
