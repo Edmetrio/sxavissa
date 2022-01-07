@@ -184,19 +184,19 @@
                             <div class="layout-menu-tooltip-text">Artigos</div>
                         </div>
                         <ul role="menu">
-                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('artigos') }}"><i class="layout-menuitem-icon pi pi-fw pi-external-link"></i><span>Artigo</span></a>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('artigos') }}"><i class="layout-menuitem-icon pi pi-fw pi-slack"></i><span>Artigo</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Artigo</div>
                                 </div>
                             </li>
-                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('materia') }}"><i class="layout-menuitem-icon pi pi-fw pi-external-link"></i><span>Matéria-Prima</span></a>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('materia') }}"><i class="layout-menuitem-icon pi pi-fw pi-discord"></i><span>Matéria-Prima</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Matéria-Prima</div>
                                 </div>
                             </li>
-                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ route('composicao.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-external-link"></i><span>Composição</span></a>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('composicaos') }}"><i class="layout-menuitem-icon pi pi-fw pi-shield"></i><span>Composição</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Composição</div>
@@ -210,13 +210,13 @@
                             <div class="layout-menu-tooltip-text">Pages</div>
                         </div>
                         <ul role="menu">
-                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('stock.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Estoque</span></a>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('stock.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-ticket"></i><span>Estoque</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Estoque</div>
                                 </div>
                             </li>
-                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('aumento.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Aumento</span></a>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ url('aumentos') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Aumento</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Aumento</div>

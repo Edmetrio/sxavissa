@@ -18,7 +18,7 @@
     <div class="layout-content">
         <div class="p-col-12">
             <div class="card">
-                <h5>Aumento do Estoque</h5>
+                <h5>Composição do Artigo</h5>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Opss!</strong> Algum problema com seu formulário<br><br>
@@ -37,37 +37,38 @@
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Artigo</label>
-                            <select name="artigo_id" class="form-control">
+                            <select name="artigo_id" wire:model="selectedArtigo" class="form-control">
                                 <option value="">Seleccione o Artigo</option>
-                                @foreach($composicao->artigo as $a)
-                                <option value="{{$a->id}}">{{ $a->nome }}</option>
+                                @foreach($artigo as $c)
+                                <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
                             </select>
                         </div>
 
+                       
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Matéria-Prima</label>
                             <select name="materia_id" class="form-control">
                                 <option value="">Seleccione a Materia-Prima</option>
-                                @foreach($composicao->materia as $m)
-                                <option value="{{$m->id}}">{{ $m->nome }}</option>
+                                @foreach($materia as $c)
+                                <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
                             </select>
                         </div>
-
+                        
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Unidade</label>
                             <select name="unidade_id" class="form-control">
                                 <option value="">Seleccione a Unidade</option>
-                                @foreach($composicao->unidade as $p)
-                                <option value="{{$p->id}}">{{ $p->nome }}</option>
+                                @foreach($unidade as $c)
+                                <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Quantidade</label>
-                            <input name="quantidade" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                            <input name="quantidade" type="number" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
                         </div>
 
                     </div>
@@ -82,8 +83,17 @@
                         <p class="alert alert-success" class="table p-field p-col-12 p-md-6 table-striped" style="text-align: center;">{{ $message }}</p>
                     </div>
                     @endif
-                    <label class="ui-outputlabel ui-widget" for="">Procurar</label>
-                <input wire:model="search" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="Procurar..." />
+                    <div class="p-field p-col-12 p-md-6">
+                        <label class="ui-outputlabel ui-widget" for="">Nome do Artigo Composto</label>
+                        <select name="categoria_id" wire:model="selectedArtigo" class="form-control">
+                            <option value="">Seleccione o Artigo</option>
+                            @foreach($artigo as $c)
+                            <option value="{{$c->id}}">{{$c->nome}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @if (!is_null($selectedArtigo))
                     <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
                         <caption>Lista de Categorias</caption>
                         <thead>
@@ -105,6 +115,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
             </div>
         </div>
