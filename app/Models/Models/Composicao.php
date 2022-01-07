@@ -31,4 +31,9 @@ class Composicao extends Model
     {
         return $this->hasOne(Unidade::class, 'id', 'unidade_id');
     }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'materia_id');
+    }
 }
