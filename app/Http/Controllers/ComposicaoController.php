@@ -52,10 +52,10 @@ class ComposicaoController extends Controller
         $composicao = Composicao::create($request->all());
         if ($composicao) {
             $request->session()->flash('status', 'Composição realizada');
-            return redirect('composicao');
+            return redirect('composicaos');
         }
         $request->session()->flash('status', 'Erro ao realizar!');
-        return redirect('composicao');
+        return redirect('composicaos');
     }
 
     /**
