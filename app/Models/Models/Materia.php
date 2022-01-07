@@ -26,4 +26,9 @@ class Materia extends Model
     {
         return $this->hasOneThrough(Armazem::class, Stock::class);
     }
+
+    public function artigos()
+    {
+        return $this->belongsToMany(Artigo::class);
+    }
 }
