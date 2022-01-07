@@ -21,6 +21,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\TransacaoController;
 use App\Http\Livewire\Artigos;
+use App\Http\Livewire\Aumentos;
 use App\Http\Livewire\Categoria;
 use App\Http\Livewire\Composicaos;
 use App\Http\Livewire\Materia;
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('relatorios', Relatorios::class);
     Route::get('materia', Materias::class);
     Route::get('composicaos', Composicaos::class);
+    Route::get('aumentos', Aumentos::class);
 });
 
 Route::resource('home', HomeController::class);
