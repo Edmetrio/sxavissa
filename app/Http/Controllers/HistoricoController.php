@@ -82,7 +82,7 @@ class HistoricoController extends Controller
             }
             $historico->total = $total;
             $iva = $total * 0.17;
-            $historico->tt = $iva + $total;
+            $historico->tt = $total;
 
 
             return view('invoide', compact('historico', 'hist'));
