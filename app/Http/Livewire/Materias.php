@@ -26,8 +26,5 @@ class Materias extends Component
 
     }
 
-    public function armazems()
-    {
-        return $this->hasManyThrough(Armazem::class, Stock::class, 'materia_id', 'armazem_id', 'id', 'id');
-    }
+    
 }
