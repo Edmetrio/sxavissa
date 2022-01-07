@@ -25,9 +25,9 @@ class AumentoController extends Controller
         $materia = Materia::orderBy('id', 'desc')->get();
         $unidade = Unidade::orderBy('id', 'desc')->get();
         $armazem = Armazem::orderBy('id', 'desc')->get();
-        $aumento = Aumento::with(['artigos','users','pagamentos','unidades','materias','armazems'])->get();
+        $aumento = Aumento::with(['artigos', 'users', 'pagamentos', 'unidades', 'materias', 'armazems'])->get();
         /* dd($aumento); */
-        return view('aumento', compact('aumento','artigo','pagamento','materia','unidade','armazem'));
+        return view('aumento', compact('aumento', 'artigo', 'pagamento', 'materia', 'unidade', 'armazem'));
     }
 
     /**
@@ -59,16 +59,24 @@ class AumentoController extends Controller
         ]);
 
         $aumento = Aumento::create($request->all());
-        $estoque = Stock::where(['artigo_id' => $request->artigo_id])->first();
-        $aumento = $estoque->quantidade + $request->quantidade;
-        Stock::where(['artigo_id' => $request->artigo_id])->update(['quantidade' => $aumento]);
-        if ($estoque) {
-            $request->session()->flash('status', 'Item Adicionado');
-            return redirect('aumento');
-        }
-        $request->session()->flash('status', 'Erro ao Adicionar!');
-        return redirect('aumento');
 
+        if (is_null($request->materia_id)) {
+            $estoque = Stock::where(['artigo_id' => $request->artigo_id])->first();
+            $aumento = $estoque->quantidade + $request->quantidade;
+            Stock::where(['artigo_id' => $request->artigo_id])->update(['quantidade' => $aumento]);
+            if ($estoque) {
+                $request->session()->flash('status', 'Item Adicionado');
+                return redirect('aumentos');
+            }
+            $request->session()->flash('status', 'Erro ao Adicionar!');
+            return redirect('aumentos');
+        } else {
+            $estoque = Stock::where('materia_id', $request->materia_id)->first();
+            $aumento = $estoque->quantidade + $request->quantidade;
+            $estoque = Stock::where('materia_id', $request->materia_id)->update(['quantidade' => $aumento]);
+            $request->session()->flash('status', 'Item Adicionado');
+            return redirect('aumentos');
+        }
     }
 
     /**
