@@ -15,8 +15,9 @@ class SubcategoriaController extends Controller
      */
     public function index()
     {
-        $subcategoria = Subcategoria::with(['categorias'])->orderBy('id', 'desc')->get();
-        $categoria = Categoria::orderBy('id', 'desc')->get();
+        $subcategoria = Subcategoria::with(['categorias'])->where('estado', 'on')->orderBy('created_at', 'desc')->get();
+        dd($subcategoria);
+        $categoria = Categoria::orderBy('created_at', 'desc')->get();
         return view('subcategoria', compact('subcategoria','categoria'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
