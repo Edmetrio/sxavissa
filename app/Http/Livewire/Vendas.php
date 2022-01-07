@@ -52,7 +52,7 @@ class Vendas extends Component
             }
             $total = $t;
             $itens->iva = $iva = $t * 0.17;
-            $itens->total = $iva + $t;
+            $itens->total = $t;
             
             
             return view('livewire.vendas', compact('artigo', 'itens', 'total', 'transacao','pagamento'));
