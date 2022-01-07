@@ -15,7 +15,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::orderBy('id', 'asc')->get();
+        $categoria = Categoria::orderBy('created_at', 'desc')->get();
         return view('categoria', compact('categoria'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
