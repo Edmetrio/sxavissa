@@ -31,7 +31,7 @@
                 </ul>
             </div>
             @endif
-
+            @can('categoria-criar')
                 <form action="{{url('categoria')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="ui-fluid p-formgrid p-grid">
@@ -58,6 +58,8 @@
 
                     </div>
                 </form>
+            @endcan
+
 
             <div class="table-responsive-md">
                 <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
@@ -77,12 +79,16 @@
                             <td><img class="img-fluid" src="assets/images/categoria/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->estado}}</td>
                             <td role="gridcell"  style="display: flex; justify-content: flex-start;">
+                            @can('categoria-alterar')
                                 <a href="{{url("categoria/$c->id/edit")}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only edit-button rounded-button ui-button-success"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>
-                            <form action="{{ route('categoria.destroy',$c->id)}}" method="POST">
+                            @endcan
+                            @can('categoria-apagar')
+                                <form action="{{ route('categoria.destroy',$c->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button"><span class="ui-button-icon-left ui-icon ui-c pi pi-trash"></span><span class="ui-button-text ui-c">ui-button</span></button>
                             </form>
+                            @endcan
                             </td>
                         </tr>
                         @endforeach
