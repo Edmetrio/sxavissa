@@ -226,6 +226,26 @@
                             </li>
                         </ul>
                     </li>
+                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-briefcase"></i><span>Gestão</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                        <div class="layout-menu-tooltip">
+                            <div class="layout-menu-tooltip-arrow"></div>
+                            <div class="layout-menu-tooltip-text">Pages</div>
+                        </div>
+                        <ul role="menu">
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('users.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-ticket"></i><span>Utilizadores</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Estoque</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('roles.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Regras</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Aumento</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     <li id="menuform:om_buy" role="menuitem"><a href="{{ url('vendas') }}"><i class="layout-menuitem-icon pi pi-fw pi-shopping-cart"></i><span>Venda</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
