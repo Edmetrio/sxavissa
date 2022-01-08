@@ -18,6 +18,14 @@ class ArtigoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:artigo-listar|artigo-criar|artigo-alterar|artigo-apagar', ['only' => ['index','store']]);
+         $this->middleware('permission:artigo-criar', ['only' => ['create','store']]);
+         $this->middleware('permission:artigo-alterar', ['only' => ['edit','update']]);
+         $this->middleware('permission:artigo-apagar', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $artigo = Artigo::with(['categorias', 'subcategorias', 'tipos', 'stocks'])->orderBy('id', 'desc')->get();
@@ -51,9 +59,9 @@ class ArtigoController extends Controller
     public function store(Request $request)
     {
         /* return $request->input(); */
-        /* $request->validate([
+        $request->validate([
             'codigobarra' => 'required|numeric',
-            'nome' => 'required|unique:artigo,nome|min:5',
+            'nome' => 'required|unique:artigo,nome',
             'categoria_id' => 'required',
             'subcategoria_id' => 'required',
             'tipo_id' => 'required',
@@ -63,7 +71,7 @@ class ArtigoController extends Controller
             'quantidade' => 'required',
             'stockminimo' => 'required',
             'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]); */
+        ]);
 
         $input = $request->all();
         $stocki = $request->all();
