@@ -17,9 +17,11 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\TransacaoController;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\Artigos;
 use App\Http\Livewire\Aumentos;
 use App\Http\Livewire\Categoria;
@@ -77,6 +79,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('materia', Materias::class);
     Route::get('composicaos', Composicaos::class);
     Route::get('aumentos', Aumentos::class);
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 });
 
 Route::resource('home', HomeController::class);
