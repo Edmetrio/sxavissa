@@ -22,6 +22,14 @@ class Artigos extends Component
     public $selectedCategoria = NULL;
     public $selectedTipo = NULL;
 
+    /* function __construct()
+    {
+         $this->middleware('permission:artigo-listar|artigo-criar|artigo-alterar|artigo-apagar', ['only' => ['index','store']]);
+         $this->middleware('permission:artigo-criar', ['only' => ['create','store']]);
+         $this->middleware('permission:artigo-alterar', ['only' => ['edit','update']]);
+         $this->middleware('permission:artigo-apagar', ['only' => ['destroy']]);
+    } */
+
     public function mount()
     {
         $this->categoria = Categoria::orderBy('id', 'desc')->get();
