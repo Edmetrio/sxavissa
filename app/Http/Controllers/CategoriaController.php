@@ -13,6 +13,14 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+         $this->middleware('permission:categoria-listar|categoria-criar|categoria-alterar|categoria-apagar', ['only' => ['index','store']]);
+         $this->middleware('permission:categoria-criar', ['only' => ['create','store']]);
+         $this->middleware('permission:categoria-alterar', ['only' => ['edit','update']]);
+         $this->middleware('permission:categoria-apagar', ['only' => ['destroy']]);
+    }
+    
     public function index()
     {
         $categoria = Categoria::orderBy('created_at', 'desc')->get();
