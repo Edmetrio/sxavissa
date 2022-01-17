@@ -40,6 +40,7 @@
 
                         <label class="ui-outputlabel ui-widget" for="">Nome da Categoria</label>
                         <input name="nome" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" value="{{$categoria->nome}}" />
+                        <input type="text" hidden name="users_id"  value="{{ Auth::user()->id  }}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                     </div>
 
                     <div class="p-field p-col-12 p-md-6">
