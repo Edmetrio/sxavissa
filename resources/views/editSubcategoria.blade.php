@@ -39,6 +39,7 @@
                     <div class="p-field p-col-12 p-md-6">
                         <label class="ui-outputlabel ui-widget" for="">Nome da Subcategoria</label>
                         <input name="nome" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " value="{{$subcategoria->nome}}" />
+                        <input name="users_id" hidden type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                     </div>
 
                     <div class="p-field p-col-12 p-md-6">
