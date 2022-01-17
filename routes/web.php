@@ -51,7 +51,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 Route::get('/dashboard', function () {
     return view('inicio');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/', InicioController::class);
 
