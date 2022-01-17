@@ -7,7 +7,8 @@ use App\Models\Models\Tipo;
 use App\Models\Models\Armazem;
 use App\Models\Models\Unidade;
 use App\Models\Models\Categoria;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Artigos extends Component
@@ -38,16 +39,16 @@ class Artigos extends Component
 
     public function render()
     {
-        $artigo = Artigo::where('nome', 'like' ,'%'.$this->search.'%')->
+        $artigo = Artigo::where('idacesso', Auth::user()->idacesso)->where('nome', 'like' ,'%'.$this->search.'%')->
                             orWhere('codigobarra', 'like' ,'%'.$this->search.'%')->
                             with(['categorias','subcategorias','tipos','stocks'])->
                             orderBy('id', 'desc')->paginate(10);
                             
-        $tipo = Tipo::orderBy('id', 'desc')->get();
-        $subcategoria = Subcategoria::orderBy('id', 'desc')->get();
-        $armazem = Armazem::orderBy('id', 'desc')->get();
-        $unidade = Unidade::orderBy('id', 'desc')->get();
-        $categoria = Categoria::orderBy('id', 'desc')->get();
+        $tipo = Tipo::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $subcategoria = Subcategoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $armazem = Armazem::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $unidade = Unidade::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
   
         /* $procurar = Categoria::where('estado', 'like' ,'%'.$this->search.'%')->get(); */
         
