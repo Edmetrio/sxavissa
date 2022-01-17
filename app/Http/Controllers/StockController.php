@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StockController extends Controller
 {
@@ -14,7 +15,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stock = Stock::with(['users','artigos','unidades','armazens'])->orderBy('id', 'asc')->cursorPaginate(5);
+        $stock = Stock::where('idacesso', Auth::user()->idacesso)->with(['users','artigos','unidades','armazens'])->orderBy('id', 'asc')->cursorPaginate(5);
         return view('stock', compact('stock'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
