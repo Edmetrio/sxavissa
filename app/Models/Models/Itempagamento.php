@@ -14,9 +14,10 @@ class Itempagamento extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     protected $guarded = [];
+    protected $primaryKey = 'users_id';
 
     protected $table = 'itempagamento';
-    protected $fillable = ['transacao_id','pagamento_id','quantidade','estado'];
+    protected $fillable = ['transacao_id','idacesso','users_id','pagamento_id','quantidade','estado'];
 
     public function transacaos()
     {

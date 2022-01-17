@@ -15,7 +15,7 @@ class Materia extends Model
     protected $guarded = [];
 
     protected $table = 'materia';
-    protected $fillable = ['subcategoria_id','nome','preco','estado'];
+    protected $fillable = ['subcategoria_id','users_id','idacesso','nome','preco','estado'];
 
     public function stocks()
     {

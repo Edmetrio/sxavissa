@@ -15,7 +15,7 @@ class Itemtransacao extends Model
     protected $guarded = [];
 
     protected $table = 'itemtransacao';
-    protected $fillable = ['transacao_id','artigo_id','quantidade','preco','iva','desconto','subtotal','estado'];
+    protected $fillable = ['transacao_id','idacesso','users_id','artigo_id','quantidade','preco','iva','desconto','subtotal','estado'];
 
     public function transacaos()
     {

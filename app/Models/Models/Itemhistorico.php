@@ -15,7 +15,7 @@ class Itemhistorico extends Model
     protected $guarded = [];
 
     protected $table = 'itemhistorico';
-    protected $fillable = ['historico_id','artigo_id','quantidade','preco','iva','desconto','subtotal','estado'];
+    protected $fillable = ['idacesso','users_id','historico_id','artigo_id','quantidade','preco','iva','desconto','subtotal','estado'];
 
     public function historicos()
     {

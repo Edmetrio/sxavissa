@@ -16,7 +16,7 @@ class Transacao extends Model
     protected $guarded = [];
 
     protected $table = 'transacao';
-    protected $fillable = ['users_id','userscli_id','pagamento_id','tipotransacao_id','validade','datapagamento','banco','caixa','subtotal','iva','desconto','valortotal','valorpago','valordevido','estado'];
+    protected $fillable = ['users_id','idacesso','pagamento_id','tipotransacao_id','validade','datapagamento','banco','caixa','subtotal','iva','desconto','valortotal','valorpago','valordevido','estado'];
 
     public function users()
     {

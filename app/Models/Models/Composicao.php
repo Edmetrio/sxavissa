@@ -15,7 +15,7 @@ class Composicao extends Model
     protected $guarded = [];
 
     protected $table = 'composicao';
-    protected $fillable = ['artigo_id','materia_id','unidade_id','quantidade','estado'];
+    protected $fillable = ['artigo_id','materia_id','unidade_id','users_id','idacesso','quantidade','estado'];
 
     public function artigos()
     {
