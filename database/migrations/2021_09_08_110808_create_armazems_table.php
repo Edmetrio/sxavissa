@@ -17,6 +17,8 @@ class CreateArmazemsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('numero')->nullable();
             $table->string('nome')->nullable();
             $table->string('local')->nullable();

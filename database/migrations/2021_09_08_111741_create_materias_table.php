@@ -15,6 +15,10 @@ class CreateMateriasTable extends Migration
     {
         Schema::create('materia', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nome')->nullable();
             $table->decimal('preco', 20,2)->nullable();
             $table->string('estado')->default('on');

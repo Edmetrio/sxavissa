@@ -17,6 +17,8 @@ class CreateHistoricosTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('pagamento_id')->nullable();
             $table->foreign('pagamento_id')->references('id')->on('pagamento')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('tipotransacao_id')->nullable();

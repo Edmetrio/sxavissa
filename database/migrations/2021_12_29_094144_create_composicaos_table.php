@@ -15,6 +15,10 @@ class CreateComposicaosTable extends Migration
     {
         Schema::create('composicao', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('artigo_id')->nullable();
             $table->foreign('artigo_id')->references('id')->on('artigo')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('materia_id')->nullable();

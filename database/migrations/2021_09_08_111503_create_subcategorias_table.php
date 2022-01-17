@@ -15,6 +15,10 @@ class CreateSubcategoriasTable extends Migration
     {
         Schema::create('subcategoria', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
             /* $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade'); */

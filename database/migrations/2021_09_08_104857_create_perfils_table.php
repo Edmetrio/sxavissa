@@ -17,6 +17,8 @@ class CreatePerfilsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('nuit')->nullable();
             $table->string('nome')->nullable();
             $table->string('icon')->nullable();

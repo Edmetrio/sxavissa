@@ -15,6 +15,10 @@ class CreateArtigosTable extends Migration
     {
         Schema::create('artigo', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('idacesso')->nullable();
+            $table->foreign('idacesso')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('codigobarra');
             $table->uuid('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('cascade')->onUpdate('cascade');
@@ -25,7 +29,7 @@ class CreateArtigosTable extends Migration
             $table->string('nome')->unique()->nullable();
             $table->string('icon')->nullable();
             $table->decimal('preco', 20,2)->nullable();
-            $table->decimal('iva', 20,2)->nullable();
+            $table->string('iva')->nullable();
             $table->decimal('desconto', 20,2)->nullable();
             $table->string('garantia')->nullable();
             $table->string('estado')->default('on');            
