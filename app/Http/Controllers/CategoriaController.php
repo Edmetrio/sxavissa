@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
 
 class CategoriaController extends Controller
@@ -23,11 +25,17 @@ class CategoriaController extends Controller
     
     public function index()
     {
-        $categoria = Categoria::orderBy('created_at', 'desc')->get();
+        
+        $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('created_at', 'desc')->get();
         return view('categoria', compact('categoria'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function idacesso($idacesso)
+    {
+        $idacesso = User::where('id', Auth::user()->id)->get();
+        return $idacesso;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -49,6 +57,7 @@ class CategoriaController extends Controller
     {
         $request->validate([
             'nome' => 'required',
+            'users_id' => 'required',
             'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -62,6 +71,7 @@ class CategoriaController extends Controller
             unset($input['icon']);
         }
 
+        /* dd($input); */
         $categoria = Categoria::create($input);
         if ($categoria) {
             $request->session()->flash('status', 'Categoria adicionada');
