@@ -18,7 +18,7 @@ class Stock extends Model
     /* protected $primaryKey = 'artigo_id'; */
 
     protected $table = 'stock';
-    protected $fillable = ['users_id','artigo_id','unidade_id','armazem_id','materia_id','custo','quantidade','stockminimo','estado'];
+    protected $fillable = ['users_id','idacesso','artigo_id','unidade_id','armazem_id','materia_id','custo','quantidade','stockminimo','estado'];
 
     public function users()
     {
