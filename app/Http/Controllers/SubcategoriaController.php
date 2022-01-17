@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Models\Categoria;
 use App\Models\Models\Subcategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubcategoriaController extends Controller
 {
@@ -24,7 +25,7 @@ class SubcategoriaController extends Controller
     public function index()
     {
         $subcategoria = Subcategoria::with(['categorias'])->where('estado', 'on')->orderBy('created_at', 'desc')->get();
-        $categoria = Categoria::orderBy('created_at', 'desc')->where('estado', 'on')->get();
+        $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('created_at', 'desc')->where('estado', 'on')->get();
         return view('subcategoria', compact('subcategoria','categoria'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -36,7 +37,7 @@ class SubcategoriaController extends Controller
      */
     public function create()
     {
-        $categoria = Categoria::with(['subcategorias'])->orderBy('id', 'desc')->get();
+        $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->with(['subcategorias'])->orderBy('id', 'desc')->get();
         return view('createSubcategoria', compact('categoria'));
     }
 
@@ -76,8 +77,8 @@ class SubcategoriaController extends Controller
 
     public function edit($id)
     {
-        $subcategoria = Subcategoria::with('categorias')->find($id);
-        $categoria = Categoria::orderBy('id', 'desc')->get();
+        $subcategoria = Subcategoria::where('idacesso', Auth::user()->idacesso)->with('categorias')->find($id);
+        $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
         return view('editSubcategoria', compact('subcategoria','categoria'));
     }
 
