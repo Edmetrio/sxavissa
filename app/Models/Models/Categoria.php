@@ -15,7 +15,7 @@ class Categoria extends Model
     protected $guarded = [];
 
     protected $table = 'categoria';
-    protected $fillable = ['nome','icon','estado'];
+    protected $fillable = ['nome','icon','users_id','idacesso','estado'];
 
     public function subcategorias()
     {
