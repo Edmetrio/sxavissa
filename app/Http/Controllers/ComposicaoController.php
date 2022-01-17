@@ -21,7 +21,7 @@ class ComposicaoController extends Controller
         $materia = Materia::orderBy('id', 'desc')->get();
         $unidade = Unidade::orderBy('id', 'desc')->get();
         $composicao = Composicao::with(['artigos','materias','unidades'])->get();
-        return view('composicao', compact('composicao','artigo','materia','unidade'));
+        return view('composicaos', compact('composicao','artigo','materia','unidade'));
     }
 
     /**
@@ -42,6 +42,7 @@ class ComposicaoController extends Controller
      */
     public function store(Request $request)
     {
+        /* return $request->all(); */
         $request->validate([
             'artigo_id' => 'required',
             'materia_id' => 'required',
