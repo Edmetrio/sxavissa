@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $data = User::where('idacesso', Auth::user()->idacesso)->orderBy('id','DESC')->paginate(5);
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -47,6 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        /* return $request->input(); */
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -59,6 +61,8 @@ class UserController extends Controller
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
+
+        User::where(['id' => $user->id])->update(['idacesso' => $request->idacesso]);
     
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
