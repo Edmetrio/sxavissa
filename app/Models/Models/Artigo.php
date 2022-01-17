@@ -15,7 +15,7 @@ class Artigo extends Model
     protected $guarded = [];
 
     protected $table = 'artigo';
-    protected $fillable = ['codigobarra','categoria_id','subcategoria_id','tipo_id','nome','icon','preco','iva','desconto','garantia','estado'];
+    protected $fillable = ['codigobarra','categoria_id','subcategoria_id','tipo_id','users_id','idacesso','nome','icon','preco','iva','desconto','garantia','estado'];
 
     public function stocks()
     {
