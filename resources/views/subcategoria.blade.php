@@ -39,10 +39,12 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Nome da Subcategoria</label>
                             <input name="nome" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                            <input name="users_id" hidden type="text" value="{{Auth::user()->id}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                            <input name="idacesso" hidden type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                         </div>
 
                         <div class="p-field p-col-12 p-md-6">
-                            <label class="ui-outputlabel ui-widget" for="">Nome da Subcategoria</label>
+                            <label class="ui-outputlabel ui-widget" for="">Nome da Categoria</label>
                             <select name="categoria_id" class="form-control">
                                 <option value="">Seleccione a Categoria</option>
                                     @foreach($categoria as $c)
