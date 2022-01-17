@@ -56,7 +56,8 @@
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Quantidade</label>
                             <input name="quantidade" type="numeric" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
-                            <input name="users_id" type="text" value="{{ Auth::user()->id }}" hidden class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                            <input name="users_id" hidden type="text" value="{{Auth::user()->id}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                            <input name="idacesso" hidden type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                         </div>
 
                         <div class="p-field p-col-12 p-md-6">

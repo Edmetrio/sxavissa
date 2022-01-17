@@ -65,6 +65,8 @@
                                     <input hidden name="artigo_id" value="{{ $c->id ?? ''}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                                     <input hidden name="tipo_nome" value="{{ $c->tipos->nome ?? ''}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                                     <input hidden name="tipo_id" value="{{ $c->tipos->id ?? ''}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                                    <input name="users_id" hidden type="text" value="{{Auth::user()->id}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                                    <input name="idacesso" hidden type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                                     <tr>
                                         <td>{{$c->codigobarra}}</td>
                                         <td>{{$c->nome}}</td>
@@ -87,11 +89,13 @@
                     @if(!isset($transacao->users_id) && !isset($transacao->valortotal))
                     <form action="{{ route('transacao.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="p-field p-col-12 p-md-2">
+                        <div class="p-field p-col-12 p-md-12">
                             <hr>
                             <label class="ui-outputlabel ui-widget" for="">Olá, <strong style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">{{ Auth::user()->name }}</strong></label>
                             <hr>
                             <input type="text" name="users_id" hidden value="{{ Auth::user()->id  }}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                        </div>
+                        <div class="p-field p-col-12 p-md-4">
                             <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                                 <span class="ui-button-text ui-c">Iniciar</span></button>
                         </div>
@@ -110,6 +114,8 @@
 
                         <input hidden name="valortotal" value="{{$total}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
                         <input hidden name="transacao_id" value="{{$transacao->id}}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required style="width: 150px; text-align: center;" />
+                        <input name="users_id" hidden type="text" value="{{Auth::user()->id}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                        <input name="idacesso" hidden type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                         <div class="p-field p-col-12 p-md-12">
                             <label class="ui-outputlabel ui-widget" for="">Tipo de Pagamento</label>
                             <select name="pagamento_id" class="form-control" required>

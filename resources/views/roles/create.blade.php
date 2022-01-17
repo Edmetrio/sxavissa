@@ -54,7 +54,7 @@
                 </div>
                 <div class="p-field p-col-12 p-md-6">
                 </div>
-                <div class="p-field p-col-12 p-md-1">
+                <div class="p-field p-col-12 p-md-2">
                     <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                         <span class="ui-button-text ui-c">Adicionar</span>
                     </button>

@@ -33,27 +33,33 @@
             </div>
             @endif
 
-            {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-        
+            <!-- {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!} -->
+            <form action="{{url('users')}}" method="POST" enctype="multipart/form-data">
+                @csrf
             <div class="ui-fluid p-formgrid p-grid">
                 <div class="p-field p-col-12 p-md-6">
                     <label class="ui-outputlabel ui-widget" for="">Nome</label>
-                    {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                    <!-- {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!} -->
+                    <input name="name" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " placeholder="nome" required />
+                    <input name="idacesso" hidden value="{{ Auth::user()->id  }}" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
                     <label class="ui-outputlabel ui-widget" for="">E-mail</label>
-                    {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                    <input name="email" type="email" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " placeholder="sydevelop@xavissa.co.mz" required />
+                    <!-- {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!} -->
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
                     <label class="ui-outputlabel ui-widget" for="">Palavra-Passe</label>
-                    {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                    <input name="password" type="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                    <!-- {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!} -->
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
                     <label class="ui-outputlabel ui-widget" for="">Confirmar Palavra-Passe</label>
-                    {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                    <input name="confirm-password" type="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
+                    <!-- {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!} -->
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
@@ -62,13 +68,14 @@
                 </div>
                 <div class="p-field p-col-12 p-md-6">
                 </div>
-                <div class="p-field p-col-12 p-md-1">
+                <div class="p-field p-col-12 p-md-2">
                     <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                         <span class="ui-button-text ui-c">Adicionar</span>
                     </button>
                 </div>
             </div>
-            {!! Form::close() !!}
+            </form>
+            <!-- {!! Form::close() !!} -->
         </div>
 
     </div>
