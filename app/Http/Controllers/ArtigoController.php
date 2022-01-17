@@ -9,7 +9,9 @@ use App\Models\Models\Stock;
 use App\Models\Models\Subcategoria;
 use App\Models\Models\Tipo;
 use App\Models\Models\Unidade;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArtigoController extends Controller
 {
@@ -28,12 +30,12 @@ class ArtigoController extends Controller
 
     public function index()
     {
-        $artigo = Artigo::with(['categorias', 'subcategorias', 'tipos', 'stocks'])->orderBy('id', 'desc')->get();
-        $categoria = Categoria::orderBy('id', 'desc')->get();
-        $tipo = Tipo::orderBy('id', 'desc')->get();
-        $subcategoria = Subcategoria::orderBy('id', 'desc')->get();
-        $armazem = Armazem::orderBy('id', 'desc')->get();
-        $unidade = Unidade::orderBy('id', 'desc')->get();
+        $artigo = Artigo::where('idacesso', Auth::user()->idacesso)->with(['categorias', 'subcategorias', 'tipos', 'stocks'])->orderBy('id', 'desc')->get();
+        $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $tipo = Tipo::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $subcategoria = Subcategoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $armazem = Armazem::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
+        $unidade = Unidade::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->get();
         return view('artigos', compact('artigo', 'categoria', 'subcategoria', 'tipo', 'armazem', 'unidade'));
     }
 
@@ -94,6 +96,7 @@ class ArtigoController extends Controller
             $request->session()->flash('status', 'Erro ao Adicionar!');
             return redirect('artigos');
         } else {
+            /* return $request->input(); */
             $artigo = Artigo::create($input);
             $stocki['artigo_id'] = $artigo->id;
             $stock = Stock::create($stocki);
