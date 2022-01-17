@@ -16,7 +16,7 @@ class Aumento extends Model
     protected $guarded = [];
 
     protected $table = 'aumento';
-    protected $fillable = ['users_id','artigo_id','pagamento_id','unidade_id','materia_id','armazem_id','numerolote','custo','quantidade','validade','estado'];
+    protected $fillable = ['users_id','idacesso','artigo_id','pagamento_id','unidade_id','materia_id','armazem_id','numerolote','custo','quantidade','validade','estado'];
 
     public function users()
     {
