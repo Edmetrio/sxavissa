@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Models\Models\Armazem;
+use App\Models\Models\Artigo;
 use App\Models\Models\Endereco;
 use App\Models\Models\Historico;
 use App\Models\Models\Perfil;
 use App\Models\Models\Stock;
 use App\Models\Models\Telefone;
+use App\Models\Models\Tipo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +17,7 @@ use Illuminate\Notifications\Notifiable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, Uuid, HasRoles;
 
@@ -83,5 +85,10 @@ class User extends Authenticatable
     public function historicos()
     {
         return $this->hasMany(Historico::class, 'users_id');
+    }
+
+    public function artigos()
+    {
+        return $this->hasManyThrough(Artigo::class, Tipo::class, 'users_id');
     }
 }
