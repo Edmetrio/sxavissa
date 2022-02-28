@@ -24,7 +24,7 @@ class SubcategoriaController extends Controller
     
     public function index()
     {
-        $subcategoria = Subcategoria::with(['categorias'])->where('estado', 'on')->orderBy('created_at', 'desc')->get();
+        $subcategoria = Subcategoria::where('idacesso', Auth::user()->idacesso)->with(['categorias'])->where('estado', 'on')->orderBy('created_at', 'desc')->get();
         $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('created_at', 'desc')->where('estado', 'on')->get();
         return view('subcategoria', compact('subcategoria','categoria'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
