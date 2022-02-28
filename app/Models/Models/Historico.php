@@ -38,8 +38,9 @@ class Historico extends Model
         return $this->hasMany(Itemhistorico::class, 'historico_id');
     }
 
-    public function itemartigo()
+    public function artigos()
     {
-        return $this->hasManyThrough(Artigo::class, Itemhistorico::class);
+        return $this->belongsToMany(Artigo::class, 'itemhistorico');
     }
+
 }

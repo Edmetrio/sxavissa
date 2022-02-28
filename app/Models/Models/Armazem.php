@@ -16,7 +16,7 @@ class Armazem extends Model
     protected $guarded = [];
 
     protected $table = 'armazem';
-    protected $fillable = ['numero','nome','local','estado','users_id'];
+    protected $fillable = ['numero','nome','local','estado','users_id','idacesso'];
 
     public function stocks()
     {

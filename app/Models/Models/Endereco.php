@@ -15,7 +15,7 @@ class Endereco extends Model
     protected $guarded = [];
 
     protected $table = 'endereco';
-    protected $fillable = ['nome','estado','users_id'];
+    protected $fillable = ['nome','estado','users_id','idacesso'];
 
     public function users()
     {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Models\Armazem;
 use App\Models\Models\Artigo;
+use App\Models\Models\Cotacao;
 use App\Models\Models\Endereco;
 use App\Models\Models\Historico;
 use App\Models\Models\Perfil;
@@ -90,5 +91,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function artigos()
     {
         return $this->hasManyThrough(Artigo::class, Tipo::class, 'users_id');
+    }
+
+    public function cotacaos()
+    {
+        return $this->hasMany(Cotacao::class, 'users_id');
     }
 }
