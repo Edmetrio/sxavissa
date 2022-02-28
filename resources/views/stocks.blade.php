@@ -49,6 +49,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {{$stock}}
+
                         @foreach($artigo as $c)
                         <tr>
                             <td>{{$c->codigobarra}}</td>
@@ -56,7 +58,7 @@
                             <td>{{$c->subcategorias->nome}}</td>
                             <td>{{$c->tipos->nome}}</td>
                             <td>{{$c->nome}}</td>
-                            <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
+                            <td><img class="img-fluid" src="{{asset('storage')}}/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->preco}}</td>
                             <td>{{$c->iva}}</td>
                             <td role="gridcell"   style="display: flex; justify-content: flex-start;">
