@@ -22,10 +22,10 @@ class ArtigoController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:artigo-listar|artigo-criar|artigo-alterar|artigo-apagar', ['only' => ['index','store']]);
-         $this->middleware('permission:artigo-criar', ['only' => ['create','store']]);
-         $this->middleware('permission:artigo-alterar', ['only' => ['edit','update']]);
-         $this->middleware('permission:artigo-apagar', ['only' => ['destroy']]);
+        $this->middleware('permission:artigo-listar|artigo-criar|artigo-alterar|artigo-apagar', ['only' => ['index', 'store']]);
+        $this->middleware('permission:artigo-criar', ['only' => ['create', 'store']]);
+        $this->middleware('permission:artigo-alterar', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:artigo-apagar', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -63,15 +63,11 @@ class ArtigoController extends Controller
         /* return $request->input(); */
         $request->validate([
             'codigobarra' => 'required|numeric',
-            'nome' => 'required|unique:artigo,nome',
+            'nome' => 'required',
             'categoria_id' => 'required',
             'subcategoria_id' => 'required',
             'tipo_id' => 'required',
             'preco' => 'required',
-            'desconto' => 'required',
-            'armazem_id' => 'required',
-            'quantidade' => 'required',
-            'stockminimo' => 'required',
             'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -87,9 +83,18 @@ class ArtigoController extends Controller
         }
 
         $id = '3ce23584-56cc-45ce-853d-84c9965053bf';
+        $idservico = '9ed66d9f-614f-4adc-994f-a205099e95a4';
         if ($id === $request->tipo_id || $request->tipo_id === 'Matéria-prima') {
             $artigo = Artigo::create($input);
-            if ($artigo); {
+            if ($artigo) {
+                $request->session()->flash('status', 'Artigo adicionada');
+                return redirect('artigos');
+            }
+            $request->session()->flash('status', 'Erro ao Adicionar!');
+            return redirect('artigos');
+        } elseif ($idservico === $request->tipo_id || $request->tipo_id === 'Serviço') {
+            $artigo = Artigo::create($input);
+            if ($artigo) {
                 $request->session()->flash('status', 'Artigo adicionada');
                 return redirect('artigos');
             }
@@ -128,13 +133,30 @@ class ArtigoController extends Controller
      */
     public function edit($id)
     {
+
         $artigo = Artigo::with(['categorias', 'subcategorias', 'tipos', 'stocks'])->orderBy('id', 'desc')->find($id);
         $categoria = Categoria::orderBy('id', 'desc')->get();
         $tipo = Tipo::orderBy('id', 'desc')->get();
         $subcategoria = Subcategoria::orderBy('id', 'desc')->get();
         $armazem = Armazem::orderBy('id', 'desc')->get();
         $unidade = Unidade::orderBy('id', 'desc')->get();
-        return view('editArtigo', compact('artigo', 'categoria', 'tipo', 'subcategoria', 'armazem', 'unidade'));
+
+        $artigo = Artigo::find($id);
+        $idmateria = '3ce23584-56cc-45ce-853d-84c9965053bf';
+        $idservico = '9ed66d9f-614f-4adc-994f-a205099e95a4';
+        $idproduto = '103ee92d-83c2-4ebb-8d88-8edc53e7e1e9';
+        if ($idmateria === $artigo->tipo_id) {
+            dd('materia');
+            /* return view('livewire.materiaprimas', compact('categoria')); */
+        } elseif ($idservico === $artigo->tipo_id) {
+            dd('servico');
+            /* return view('Servicos', compact('artigo', 'categoria', 'tipo', 'subcategoria', 'armazem', 'unidade')); */
+        } elseif ($idproduto === $artigo->tipo_id) {
+            /* dd('produto'); */
+            return view('artigo.editartigoservico', compact('artigo', 'categoria', 'tipo', 'subcategoria', 'armazem', 'unidade'));
+        } else {
+           
+        }
     }
 
     public function update(Request $request, $id)
@@ -159,7 +181,8 @@ class ArtigoController extends Controller
             unset($input['icon']);
         }
         $artigo = Artigo::find($id)->update($input);
-        /* $stock = Stock::where(['artigo_id' => $id])->update($stocki); */
+        /* dd($artigo->artigo_id);
+        $stock = Stock::where(['artigo_id' => $artigo->artigo_id])->update($stocki); */
         if ($artigo); {
             $request->session()->flash('status', 'Artigo Alterada');
             return redirect('artigos');
@@ -176,15 +199,12 @@ class ArtigoController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        dd($id);
-
-        /* $stock = Artigo::find($id)->delete();
-        if($stock);
-            {
-                $request->session()->flash('status', 'Artigo Apagado');
-                return redirect('artigos');
-            }
-            $request->session()->flash('status', 'Erro ao Apagar!');
-            return redirect('artigos'); */
+        $stock = Artigo::find($id)->delete();
+        if ($stock); {
+            $request->session()->flash('status', 'Artigo Apagado');
+            return redirect('artigos');
+        }
+        $request->session()->flash('status', 'Erro ao Apagar!');
+        return redirect('artigos');
     }
 }
