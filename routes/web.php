@@ -7,11 +7,13 @@ use App\Http\Controllers\ArtigoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComposicaoController;
+use App\Http\Controllers\CotacaoController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\InvoideController;
+use App\Http\Controllers\ItemcotacaoController;
 use App\Http\Controllers\ItemtransacaoController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PerfilController;
@@ -26,9 +28,13 @@ use App\Http\Livewire\Artigos;
 use App\Http\Livewire\Aumentos;
 use App\Http\Livewire\Categoria;
 use App\Http\Livewire\Composicaos;
+use App\Http\Livewire\Itemcotacaos;
 use App\Http\Livewire\Materia;
+use App\Http\Livewire\Materiaprimas;
 use App\Http\Livewire\Materias;
 use App\Http\Livewire\Relatorios;
+use App\Http\Livewire\Servicos;
+use App\Http\Livewire\Unidades;
 use App\Http\Livewire\Vendas;
 use App\Models\Models\Materia as ModelsMateria;
 use App\Models\Models\Stock;
@@ -72,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('aumento', AumentoController::class);
     Route::resource('composicao', ComposicaoController::class);
     Route::resource('materia', MateriaController::class);
+    Route::resource('cotacao', CotacaoController::class);
+    Route::resource('itemcotacao', ItemcotacaoController::class);
 
     Route::get('artigos', Artigos::class);
     Route::get('vendas', Vendas::class);
@@ -79,6 +87,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('materia', Materias::class);
     Route::get('composicaos', Composicaos::class);
     Route::get('aumentos', Aumentos::class);
+    Route::get('itemcotacaos', Itemcotacaos::class);
+    Route::get('servicos', Servicos::class);
+    Route::get('materiaprimas', Materiaprimas::class);
+    Route::get('unidades', Unidades::class);
 });
 
 Route::group(['middleware' => ['auth']], function() {
