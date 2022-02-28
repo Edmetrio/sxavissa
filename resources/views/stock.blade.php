@@ -54,7 +54,7 @@
                             <td>{{$c->artigos->nome ?? $c->materias->nome}}</td>
                             <td>{{$c->quantidade}}</td>
                             <td>{{$c->artigos->preco ?? $c->materias->preco}}</td>
-                            <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon ?? 'capa.png'}}" alt="Xavissa" style="width: 30px; text-align: center;" /></td>
+                            <td><img class="img-fluid" src="{{asset('storage')}}/{{$c->artigos->icon}}" alt="Xavissa" style="width: 30px; text-align: center;" /></td>
                             <td>{{$c->armazens->nome}}</td>
                             <td>{{$c->stockminimo}}</td>
                             <td>{{$c->users->name}}</td>

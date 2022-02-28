@@ -58,6 +58,7 @@
                     <div class="p-field p-col-12 p-md-6" hidden>
                         <label class="ui-outputlabel ui-widget" for="lastname2">Users_id</label>
                         <input name="users_id" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" value="{{ Auth::user()->id }}" />
+                        <input name="idacesso"  type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                     </div>
 
                 </div>

@@ -139,6 +139,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'edit_nome' => [
+            'required' => 'Preenche o nome',
+        ],
     ],
 
     /*

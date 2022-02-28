@@ -21,6 +21,7 @@
     <div class="p-col-12">
         <div class="card">
             <h5>Categoria</h5>
+            <h1></h1>
             @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Opss!</strong> Algum problema com seu formulário<br><br>
@@ -71,6 +72,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Icon</th>
                             <th scope="col">Estado</th>
+                            <th scope="col">Data de Criação</th>
                             <th scope="col">Acções</th>
                         </tr>
                     </thead>
@@ -79,7 +81,9 @@
                         <tr>
                             <td>{{$c->nome}}</td>
                             <td><img class="img-fluid" src="assets/images/categoria/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
+                        
                             <td>{{$c->estado}}</td>
+                            <td>{{ $c->created_at->diffForhumans() }}</td>
                             <td role="gridcell"  style="display: flex; justify-content: flex-start;">
                             @can('categoria-alterar')
                                 <a href="{{url("categoria/$c->id/edit")}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only edit-button rounded-button ui-button-success"><span class="ui-button-icon-left ui-icon ui-c pi pi-pencil"></span><span class="ui-button-text ui-c">ui-button</span></a>

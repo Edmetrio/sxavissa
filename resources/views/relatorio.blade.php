@@ -20,34 +20,33 @@
 <div class="layout-content">
     <div class="p-col-12">
         <div class="card">
-            <h5>Artigos</h5>
-
-
+            <h5>Relatorio</h5>
             <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
-                <caption>Lista dos Artigos</caption>
+                <caption>Lista dos Relatório</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Utilizador</th>
+                        <th scope="col">Codigo de Barra</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Ícone</th>
+                        <th scope="col">Preço</th>
                         <th scope="col">Quantidade</th>
+                        <th scope="col">SubTotal</th>
+                        <th scope="col">Data</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($relatorio as $r) 
+                    @foreach($relatorio as $c)
                     <tr>
-                        <td>{{$r->users->name}}</td>
+                        <td>{{$c->artigos->codigobarra ?? ''}}</td>
+                        <td>{{$c->artigos->nome ?? ''}}</td>
+                        <td><img class="img-fluid" src="{{asset('storage')}}/{{$c->artigos->icon}}" style="width: 30px; text-align: center;" /></td>
+                        <td>{{number_format($c->artigos->preco, 2, ',','.') ?? ''}}</td>
+                        <td>{{$c->quantidade ?? ''}}</td>
+                        <td>{{number_format($c->subtotal, 2, ',','.') ?? ''}}</td>
+                        <td>{{$c->created_at->format('d-m-y')}}</td>
                     </tr>
-                    @foreach($r->itemhistoricos as $i)
-                    <tr>
-                        <td>{{$i->artigo_id}}</td>
-                        <td>{{$i->quantidade}}</td>
-                    </tr>
-                    @endforeach
-                    <td></td>
-                    <td style="text-align: right; font-size: 15px; font-weight: bold; color: cadetblue;">SubTotal: {{ number_format($r->valortotal, 2, ',','.')}}MT</td>
                     @endforeach
                 </tbody>
-                <td></td>
-                <td style="text-align: right; font-size: 20px; font-weight: bold; color: cadetblue;">Total: {{ number_format($relatorio->valor_total, 2, ',','.')}}MT</td>
             </table>
         </div>
 
