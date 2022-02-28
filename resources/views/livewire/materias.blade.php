@@ -87,8 +87,8 @@
                     </div>
                 </form>
 
-                <label class="ui-outputlabel ui-widget" for="">Procurar</label>
-                <input wire:model="search" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="Procurar..." />
+                <!-- <label class="ui-outputlabel ui-widget" for="">Procurar</label>
+                <input wire:model="search" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="Procurar..." /> -->
                 <div class="table-responsive-md">
                     <table class="table p-field p-col-12 p-md-12 table table-striped" style="margin-top: 2%;">
                         <caption>Lista dos Artigos</caption>

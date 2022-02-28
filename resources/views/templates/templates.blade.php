@@ -136,12 +136,12 @@
                         <span class="topbar-item-name">Entrar</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="{{ route('register') }}">
                         <i class="pi pi-fw pi-user"></i>
                         <span class="topbar-item-name">Registrar</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
             @endauth
             @endif
@@ -204,7 +204,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-briefcase"></i><span>Estoques</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                    <li id="menuform:om_defaul" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-briefcase"></i><span>Estoques</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Pages</div>
@@ -224,13 +224,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-briefcase"></i><span>Gestão</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-check-square"></i><span>Gestão</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Pages</div>
                         </div>
                         <ul role="menu">
-                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('users.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-ticket"></i><span>Utilizadores</span></a>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('users.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-th-large"></i><span>Utilizadores</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Estoque</div>
@@ -244,13 +244,47 @@
                             </li>
                         </ul>
                     </li>
+                    <li id="menuform:om_defa" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-star-o"></i><span>Cotação</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                        <div class="layout-menu-tooltip">
+                            <div class="layout-menu-tooltip-arrow"></div>
+                            <div class="layout-menu-tooltip-text">Pages</div>
+                        </div>
+                        <ul role="menu">
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('cotacao.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-sliders-v"></i><span>Empresa</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Empresa</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ url('itemcotacaos') }}"><i class="layout-menuitem-icon pi pi-fw pi-sitemap"></i><span>Emitir</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Emitir</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="menuform:om_def" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Outros</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                        <div class="layout-menu-tooltip">
+                            <div class="layout-menu-tooltip-arrow"></div>
+                            <div class="layout-menu-tooltip-text">Pages</div>
+                        </div>
+                        <ul role="menu">
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ url('unidades') }}"><i class="layout-menuitem-icon pi pi-fw pi-th-large"></i><span>Unidade</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Unidade</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     <li id="menuform:om_buy" role="menuitem"><a href="{{ url('vendas') }}"><i class="layout-menuitem-icon pi pi-fw pi-shopping-cart"></i><span>Venda</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Buy Now</div>
                         </div>
                     </li>
-                    <li id="menuform:om_doc" role="menuitem"><a href="{{ url('relatorios') }}"><i class="layout-menuitem-icon pi pi-fw pi-info-circle"></i><span>Relatório</span></a>
+                    <li id="menuform:om_doc" role="menuitem"><a href="{{ url('relatorio') }}"><i class="layout-menuitem-icon pi pi-fw pi-info-circle"></i><span>Relatório</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Documentation</div>

@@ -3,7 +3,7 @@
         <div class="route-bar-breadcrumb">
             <ul>
                 <li>
-                    <a href="dashboard.html">
+                    <a href="">
                         <i class="pi pi-home"></i>
                     </a>
                 </li>
@@ -70,7 +70,7 @@
                                     <tr>
                                         <td>{{$c->codigobarra}}</td>
                                         <td>{{$c->nome}}</td>
-                                        <td><img class="img-fluid" src="assets/images/artigo/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
+                                        <td><img class="img-fluid" src="{{asset('storage')}}/{{$c->icon}}" style="width: 30px; text-align: center;" /></td>
                                         <td>{{$c->preco}}</td>
                                         <td><input name="quantidade" type="number" min="1" value="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required placeholder="1" style="width: 70px; text-align: center;" /></td>
                                         <td role="gridcell" style="display: flex; justify-content: flex-start;">
@@ -163,7 +163,7 @@
                                 <tr>
                                     <td>{{$c->artigos->codigobarra ?? ''}}</td>
                                     <td>{{$c->artigos->nome ?? ''}}</td>
-                                    <td><img class="img-fluid" src="assets/images/artigo/{{$c->artigos->icon ?? ''}}" style="width: 30px; text-align: center;" /></td>
+                                    <td><img class="img-fluid" src="{{asset('storage')}}/{{$c->artigos->icon}}" style="width: 30px; text-align: center;" /></td>
                                     <td>{{number_format($c->artigos->preco, 2, ',','.') ?? ''}}</td>
                                     <td>{{$c->quantidade ?? ''}}</td>
                                     <td>{{number_format($c->valor_total, 2, ',','.') ?? ''}}</td>

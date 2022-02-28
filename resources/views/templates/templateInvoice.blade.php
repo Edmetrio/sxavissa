@@ -178,7 +178,7 @@
             <div class="layout-menu-title">MENÚ PRINCIPAL</div>
             <form id="menuform" name="menuform" method="post" action="" enctype="application/x-www-form-urlencoded">
                 <input type="hidden" name="menuform" value="menuform" />
-                <ul id="menuform:j_idt64" class="layout-menu">
+             <ul id="menuform:j_idt64" class="layout-menu">
                     <li id="menuform:om_dashboard" role="menuitem"><a href="{{url('/')}}"><i class="layout-menuitem-icon pi pi-fw pi-home"></i><span>Início</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
@@ -211,10 +211,22 @@
                             <div class="layout-menu-tooltip-text">Artigos</div>
                         </div>
                         <ul role="menu">
-                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('artigos') }}"><i class="layout-menuitem-icon pi pi-fw pi-external-link"></i><span>Artigo</span></a>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('artigos') }}"><i class="layout-menuitem-icon pi pi-fw pi-slack"></i><span>Artigo</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Artigo</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('materia') }}"><i class="layout-menuitem-icon pi pi-fw pi-discord"></i><span>Matéria-Prima</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Matéria-Prima</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_elevation" role="menuitem"><a href="{{ url('composicaos') }}"><i class="layout-menuitem-icon pi pi-fw pi-shield"></i><span>Composição</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Composição</div>
                                 </div>
                             </li>
                         </ul>
@@ -225,10 +237,56 @@
                             <div class="layout-menu-tooltip-text">Pages</div>
                         </div>
                         <ul role="menu">
-                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('stock.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Estoque</span></a>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('stock.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-ticket"></i><span>Estoque</span></a>
                                 <div class="layout-menu-tooltip">
                                     <div class="layout-menu-tooltip-arrow"></div>
                                     <div class="layout-menu-tooltip-text">Estoque</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ url('aumentos') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Aumento</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Aumento</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-briefcase"></i><span>Gestão</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                        <div class="layout-menu-tooltip">
+                            <div class="layout-menu-tooltip-arrow"></div>
+                            <div class="layout-menu-tooltip-text">Pages</div>
+                        </div>
+                        <ul role="menu">
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('users.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-ticket"></i><span>Utilizadores</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Estoque</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('roles.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Regras</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Aumento</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="layout-menuitem-icon pi pi-fw pi-briefcase"></i><span>Cotação</span><i class="pi pi-fw pi-angle-down layout-menuitem-toggler"></i></a>
+                        <div class="layout-menu-tooltip">
+                            <div class="layout-menu-tooltip-arrow"></div>
+                            <div class="layout-menu-tooltip-text">Pages</div>
+                        </div>
+                        <ul role="menu">
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ route('cotacao.index') }}"><i class="layout-menuitem-icon pi pi-fw pi-ticket"></i><span>Empresa</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Empresa</div>
+                                </div>
+                            </li>
+                            <li id="menuform:om_chronoline" role="menuitem"><a href="{{ url('itemcotacaos') }}"><i class="layout-menuitem-icon pi pi-fw pi-calendar"></i><span>Emitir</span></a>
+                                <div class="layout-menu-tooltip">
+                                    <div class="layout-menu-tooltip-arrow"></div>
+                                    <div class="layout-menu-tooltip-text">Emitir</div>
                                 </div>
                             </li>
                         </ul>
@@ -239,7 +297,7 @@
                             <div class="layout-menu-tooltip-text">Buy Now</div>
                         </div>
                     </li>
-                    <li id="menuform:om_doc" role="menuitem"><a href="{{ url('relatorios') }}"><i class="layout-menuitem-icon pi pi-fw pi-info-circle"></i><span>Relatório</span></a>
+                    <li id="menuform:om_doc" role="menuitem"><a href="{{ url('relatorio') }}"><i class="layout-menuitem-icon pi pi-fw pi-info-circle"></i><span>Relatório</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Documentation</div>

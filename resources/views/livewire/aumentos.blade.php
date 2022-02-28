@@ -49,7 +49,7 @@
                         @if (!is_null($selectedArtigo))
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Matéria-Prima</label>
-                            <select name="materia_id" class="form-control">
+                            <select name="materia_id" wire:model="materia_id" class="form-control">
                                 <!--  <option value="">Seleccione a Materia-Prima</option> -->
                                 @foreach($materia as $m)
                                 <option value="{{$m->materias->id}}">{{ $m->materias->nome }}</option>
@@ -59,18 +59,8 @@
                         @endif
 
                         <div class="p-field p-col-12 p-md-6">
-                            <label class="ui-outputlabel ui-widget" for="">Pagamento</label>
-                            <select name="pagamento_id" class="form-control">
-                                <option value="">Seleccione o Tipo de Pagamento</option>
-                                @foreach($pagamento as $p)
-                                <option value="{{$p->id}}">{{ $p->nome }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Unidade</label>
-                            <select name="unidade_id" class="form-control">
+                            <select name="unidade_id" wire:model="unidade_id" class="form-control">
                                 <option value="">Seleccione o Tipo de Unidade</option>
                                 @foreach($unidade as $u)
                                 <option value="{{$u->id}}">{{ $u->nome }}</option>
@@ -80,7 +70,7 @@
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Armazém</label>
-                            <select name="armazem_id" class="form-control">
+                            <select name="armazem_id" wire:model="armazem_id" class="form-control">
                                 <option value="">Seleccione o Armazém</option>
                                 @foreach($armazem as $a)
                                 <option value="{{$a->id}}">{{ $a->nome }}</option>
@@ -90,29 +80,73 @@
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Número de Lote</label>
-                            <input name="numerolote" type="number" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                            <input name="numerolote" wire:model="numerolote" type="number" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
                         </div>
 
-                        <div class="p-field p-col-12 p-md-6">
+                        <!-- <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Quantidade</label>
-                            <input name="quantidade" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
-                        </div>
+                            <input name="quantidade" wire:model="quantidade" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                        </div> -->
 
-                        <div class="p-field p-col-12 p-md-6">
+                        <!-- <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="">Custo</label>
-                            <input name="custo" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
-                        </div>
+                            <input name="custo" wire:model="custo" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                        </div> -->
 
                         <div class="p-field p-col-12 p-md-6">
                             <label class="ui-outputlabel ui-widget" for="lastname2">Validade</label>
-                            <input name="validade" type="date" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                            <input name="validade" wire:model="validade" type="date" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
                             <input name="users_id" hidden type="text" value="{{Auth::user()->id}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                             <input name="idacesso" hidden type="text" value="{{Auth::user()->idacesso}}" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " required />
                         </div>
 
+                        @if (!is_null($selectedArtigo))
+                        <div class="p-field p-col-12 p-md-6">
+                            <label class="ui-outputlabel ui-widget" for="">Pagamento</label>
+                            <select name="pagamento_id" wire:model="pagamento_id.0" class="form-control">
+                                <option value="">Seleccione o Tipo de Pagamento</option>
+                                @foreach($pagamento as $p)
+                                <option value="{{$p->id}}">{{ $p->nome }}</option>
+                                @endforeach
+                            </select>
+                            @error('pagamento_id.0') <span class="text-danger error">{{ $message }}</span>@enderror
+
+                            <label class="ui-outputlabel ui-widget" for="">Custo</label>
+                            <input name="quantidade" wire:model="quantidade.0" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                            @error('quantidade.0') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="p-field p-col-24 p-md-1"><br><br><br>
+                            <button wire:click.prevent="add({{$i}})" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                                <span class="ui-button-text ui-c">Adicionar</span></button>
+                        </div>
+
+                        @foreach($inputs as $key => $value)
+                        <div class="p-field p-col-12 p-md-6">
+                            <label class="ui-outputlabel ui-widget" for="">Pagamento</label>
+                            <select name="pagamento_id" wire:model="pagamento_id.{{ $value }}" class="form-control">
+                                <option value="">Seleccione o Tipo de Pagamento</option>
+                                @foreach($pagamento as $p)
+                                <option value="{{$p->id}}">{{ $p->nome }}</option>
+                                @endforeach
+                            </select>
+                            @error('pagamento_id.'.$value) <span class="text-danger error">{{ $message }}</span>@enderror
+
+                            <label class="ui-outputlabel ui-widget" for="">Custo</label>
+                            <input name="quantidade" wire:model="quantidade.{{ $value }}" type="text" value="1" min="1" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " />
+                            @error('quantidade.'.$value) <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="p-field p-col-24 p-md-1"><br><br><br>
+                        <button wire:click.prevent="remove({{$key}})" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-danger">
+                            <span class="ui-button-text ui-c">Apagar</span>
+                        </button>
+                        </div>
+                        @endforeach
+                        @endif  
                     </div>
                     <div class="p-field p-col-12 p-md-1">
-                        <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
+                        <button wire:click.prevent="store()" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only p-mr-2 p-mb-2">
                             <span class="ui-button-text ui-c">Adicionar</span></button>
                     </div>
 
