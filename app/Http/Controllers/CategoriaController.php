@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Models\Categoria;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
@@ -25,8 +26,9 @@ class CategoriaController extends Controller
     
     public function index()
     {
-        
+        $data = Carbon::now()->format('Y-m-d');
         $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('created_at', 'desc')->get();
+        $categoria->data = $data;
         return view('categoria', compact('categoria'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
