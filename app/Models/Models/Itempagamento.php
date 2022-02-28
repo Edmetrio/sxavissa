@@ -17,7 +17,7 @@ class Itempagamento extends Model
     protected $primaryKey = 'users_id';
 
     protected $table = 'itempagamento';
-    protected $fillable = ['transacao_id','idacesso','users_id','pagamento_id','quantidade','estado'];
+    protected $fillable = ['historico_id','idacesso','users_id','pagamento_id','valortotal','estado'];
 
     public function transacaos()
     {

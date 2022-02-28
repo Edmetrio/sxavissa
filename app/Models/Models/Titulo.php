@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class Unidade extends Model
+class Titulo extends Model
 {
     use HasFactory, Uuid;
 
@@ -14,11 +14,11 @@ class Unidade extends Model
     public $incrementing = false;
     protected $guarded = [];
 
-    protected $table = 'unidade';
-    protected $fillable = ['nome','users_id','idacesso','estado'];
+    protected $table = 'titulo';
+    protected $fillable = ['nome','estado'];
 
-    public function stocks()
+    public function cotacaos()
     {
-        return $this->hasMany(Stock::class, 'unidade_id');
+        return $this->hasMany(Cotacao::class);
     }
 }
