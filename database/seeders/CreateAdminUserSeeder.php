@@ -40,5 +40,21 @@ class CreateAdminUserSeeder extends Seeder
             'nome' => 'Matéria-prima', 
             'estado' => 'on'
         ]);
+
+        Tipo::create([
+            'id' => '9ed66d9f-614f-4adc-994f-a205099e95a4',
+            'users_id' => $user->id,
+            'idacesso' => $user->id,
+            'nome' => 'Serviço', 
+            'estado' => 'on'
+        ]);
+
+        Tipo::create([
+            'id' => '103ee92d-83c2-4ebb-8d88-8edc53e7e1e9',
+            'users_id' => $user->id,
+            'idacesso' => $user->id,
+            'nome' => 'Produto', 
+            'estado' => 'on'
+        ]);
     }
 }
