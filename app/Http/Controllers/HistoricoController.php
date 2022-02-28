@@ -30,9 +30,8 @@ class HistoricoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
     }
 
     /**
@@ -43,7 +42,8 @@ class HistoricoController extends Controller
      */
     public function store(Request $request)
     {
-        /* return $request->input(); */
+             /* return $request->input(); */
+
         $request->validate([
             'valortotal' => 'required|numeric',
             'transacao_id' => 'required',
@@ -55,12 +55,7 @@ class HistoricoController extends Controller
             $user = Auth::user()->id;
             $transacao = Transacao::latest()->where('users_id', $user)->first();
             $item = Itemtransacao::where('transacao_id', $request->transacao_id)->get();
-            $historico = Historico::create([
-                'users_id' => $user,
-                'idacesso' => $request->idacesso,
-                'pagamento_id' => $request->pagamento_id,
-                'valortotal' => $request->valortotal
-            ]);
+            $historico = Historico::create($request->all());
             foreach ($item as $itens) {
                 Itemhistorico::create([
                     'historico_id' => $historico->id,
@@ -69,12 +64,10 @@ class HistoricoController extends Controller
                     'quantidade' => $itens->quantidade,
                 ]);
             }
-            /* Itempagamento::create([
-                'users_id' => $user,
-                'idacesso' => $request->idacesso,
-                'transacao_id' => $request->transacao_id,
-                'quantidade' => $request->valortotal
-            ]); */
+
+            $inputpag = $request->all();
+            $inputpag['historico_id'] = $historico->id;
+            Itempagamento::create($inputpag);
             $transacao = Transacao::latest()->where('users_id', $user)->delete();
             $item = Itemtransacao::where('transacao_id', $request->transacao_id)->delete();
 
@@ -99,27 +92,21 @@ class HistoricoController extends Controller
         } else {
             $user = Auth::user()->id;
             $transacao = Transacao::latest()->where('users_id', $user)->first();
+            Itempagamento::create($request->all());
             $item = Itemtransacao::where('transacao_id', $request->transacao_id)->get();
-            $historico = Historico::create([
-                'users_id' => $user,
-                'idacesso' => $request->idacesso,
-                'pagamento_id' => $request->pagamento_id,
-                'valortotal' => $request->valortotal
-            ]);
+            $historico = Historico::create($request->all());
             foreach ($item as $itens) {
                 Itemhistorico::create([
                     'historico_id' => $historico->id,
+                    'users_id' => $itens->users_id,
                     'idacesso' => $request->idacesso,
                     'artigo_id' => $itens->artigo_id,
                     'quantidade' => $itens->quantidade,
                 ]);
             }
-            /* Itempagamento::create([
-                'users_id' => $user,
-                'idacesso' => $request->idacesso,
-                'transacao_id' => $request->transacao_id,
-                'quantidade' => $request->valortotal
-            ]); */
+            $inputpag = $request->all();
+            $inputpag['historico_id'] = $historico->id;
+            Itempagamento::create($inputpag);
             $transacao = Transacao::latest()->where('users_id', $user)->delete();
             $item = Itemtransacao::where('transacao_id', $request->transacao_id)->delete();
             $request->session()->flash('status', 'Venda Finalizada!');

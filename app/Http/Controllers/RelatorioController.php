@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models\Historico;
+use App\Models\Models\Itemhistorico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class RelatorioController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
+        /* $user = Auth::user()->id;
         $relatorio = Historico::with(['itemhistoricos','users'])->get();
             $t = 0;
         foreach($relatorio as $r)
@@ -24,7 +25,15 @@ class RelatorioController extends Controller
         }
         $relatorio->valor_total = $t;
        
-        return view('relatorio', compact('relatorio'));
+        return view('relatorio', compact('relatorio')); */
+        $relatorio = Itemhistorico::where('idacesso', Auth::user()->idacesso)->with('artigos','historicos','users')->orderBy('created_at', 'desc')->get();
+        $t = 0;
+        foreach($relatorio as $r)
+        {
+            $r->subtotal = $r->quantidade * $r->artigos->preco;
+        }
+        /* dd($relatorio); */
+        return view('relatorio', compact('relatorio')); 
     }
 
     /**

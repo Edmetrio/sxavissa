@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Models\Artigo;
+use App\Models\Models\Categoria;
+use App\Models\Models\Stock;
 use App\Models\Models\Subcategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InicioController extends Controller
 {
@@ -14,8 +18,18 @@ class InicioController extends Controller
      */
     public function index()
     {
-        $subcategoria = Subcategoria::with(['categorias'])->orderBy('id', 'desc')->get();
-        return view('inicio', compact('subcategoria'));
+        if (isset(Auth::user()->id))
+        {
+            $categoria = Categoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->count();
+            $artigo = Artigo::where('idacesso', Auth::user()->idacesso)->count();
+            $estoque = Stock::where('idacesso', Auth::user()->idacesso)->count();
+            /* dd($categoria); */
+            $subcategoria = Subcategoria::where('idacesso', Auth::user()->idacesso)->orderBy('id', 'desc')->count();
+            return view('inicio', compact('subcategoria','categoria','artigo','estoque'));
+        } else {
+            return view('inicio');
+        }
+        
     }
 
     /**

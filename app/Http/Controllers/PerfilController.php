@@ -17,7 +17,9 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $perfil = User::with(['telefones','perfils','enderecos','armazems'])->where('id', Auth::id())->first();
+        $perfil = User::where('idacesso', Auth::user()->idacesso)
+                        ->with(['telefones','perfils','enderecos','armazems'])
+                        ->where('id', Auth::id())->first();
         return view('perfil.perfil', compact('perfil'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }

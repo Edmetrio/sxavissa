@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Models\Endereco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnderecoController extends Controller
 {
@@ -14,7 +15,7 @@ class EnderecoController extends Controller
      */
     public function index()
     {
-        $endereco = Endereco::with(['perfils'])->OrderBy('id', 'desc')->get();
+        $endereco = Endereco::where('idacesso', Auth::user()->idacesso)->with(['perfils'])->OrderBy('id', 'desc')->get();
     }
 
     /**
